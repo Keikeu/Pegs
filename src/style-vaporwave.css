@@ -1,0 +1,30 @@
+.container.vaporwave {
+  background-image: url('./vaporwave.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.container.vaporwave .material-icons, .container.vaporwave .select, .container.vaporwave .top-panel__btn {
+  color: #ffffff;
+}
+
+.container.vaporwave .close-btn .material-icons {
+  color: #444444;
+}
+
+.container.vaporwave .board .peg {
+  background-image: linear-gradient(to top, #00bebe, #00cece, #00dede, #00eeee, #00ffff);
+}
+.container.vaporwave .board .peg-active {
+  background-image: linear-gradient(to top, #00bebe, #00cece, #00dede, #00eeee, #00ffff);
+}
+.container.vaporwave .board .peg-highlighted {
+  background-color: rgba(27, 42, 81, 0.2);
+  border: 2px solid #00ffff;
+}
+.container.vaporwave .board .peg-blank {
+  border: 2px solid #cccccc;
+}

@@ -1,0 +1,38 @@
+.container.christmas {
+  background-color: #101b3b;
+  background-image: linear-gradient(to bottom, #050546, #0b1555, #132265, #1a3075, #213e85, #254d94, #295ca3, #2e6bb2, #337ec2, #3c91d1, #48a5e0, #56b8ee);
+}
+
+.container.christmas .material-icons, .container.christmas h1, .container.christmas .top-panel__btn {
+  color: #ffffff;
+}
+
+.container.christmas .close-btn .material-icons {
+  color: #444444;
+}
+.container.christmas .board .peg {
+  background-image: linear-gradient(to top, #6d0505, #851d1a, #9d302d, #b54341, #cd5656);
+  background-image: linear-gradient(to top, #8b1414, #9f2926, #b23c39, #c54e4c, #d86060);
+}
+.container.christmas .board .peg-active {
+  background-image: linear-gradient(to top, #6d0505, #851d1a, #9d302d, #b54341, #cd5656);
+  background-image: linear-gradient(to top, #8b1414, #9f2926, #b23c39, #c54e4c, #d86060);
+}
+.container.christmas .board .peg-highlighted {
+  background-color: rgba(27, 42, 81, 0.5);
+  border: 2px solid #BB4444;
+}
+.container.christmas .board .peg-blank {
+  border: 2px solid #909399;
+}
+
+
+/* //dsadadasd */
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  z-index: 0;
+}
