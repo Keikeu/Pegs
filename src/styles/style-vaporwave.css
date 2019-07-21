@@ -1,5 +1,5 @@
 .container.vaporwave {
-  background-image: url('./vaporwave.jpg');
+  background-image: url('../media/vaporwave.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -7,7 +7,9 @@
   color: #ffffff;
 }
 
-.container.vaporwave .material-icons, .container.vaporwave .select, .container.vaporwave .top-panel__btn {
+.container.vaporwave .material-icons,
+.container.vaporwave .select,
+.container.vaporwave .options__btn {
   color: #ffffff;
 }
 
@@ -15,15 +17,16 @@
   color: #444444;
 }
 
-.container.vaporwave .board .peg {
+.container.vaporwave .board .peg-alive {
   background-image: linear-gradient(to top, #00bebe, #00cece, #00dede, #00eeee, #00ffff);
 }
 .container.vaporwave .board .peg-active {
   background-image: linear-gradient(to top, #00bebe, #00cece, #00dede, #00eeee, #00ffff);
+  border: 2px solid #5735B7;
 }
 .container.vaporwave .board .peg-highlighted {
-  background-color: rgba(27, 42, 81, 0.2);
-  border: 2px solid #00ffff;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 2px solid #5735B7;
 }
 .container.vaporwave .board .peg-blank {
   border: 2px solid #cccccc;
