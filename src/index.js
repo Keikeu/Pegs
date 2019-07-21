@@ -35,7 +35,7 @@ class Game extends React.Component {
       height: 7,
       width: 7,
       stepNumber: 0,
-      pegsNumber: 2,
+      pegsNumber: 32,
       defaultPegsNumber: 32,
       gameState: null,
       boardType: 'english',
