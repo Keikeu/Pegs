@@ -1,7 +1,7 @@
 {
-  "main.css": "/Pegs/static/css/main.71562b0a.chunk.css",
-  "main.js": "/Pegs/static/js/main.35525c54.chunk.js",
-  "main.js.map": "/Pegs/static/js/main.35525c54.chunk.js.map",
+  "main.css": "/Pegs/static/css/main.a925ad23.chunk.css",
+  "main.js": "/Pegs/static/js/main.b6d521b5.chunk.js",
+  "main.js.map": "/Pegs/static/js/main.b6d521b5.chunk.js.map",
   "static/js/1.38b55aa0.chunk.js": "/Pegs/static/js/1.38b55aa0.chunk.js",
   "static/js/1.38b55aa0.chunk.js.map": "/Pegs/static/js/1.38b55aa0.chunk.js.map",
   "runtime~main.js": "/Pegs/static/js/runtime~main.57aba329.js",
@@ -10,8 +10,8 @@
   "static/media/rules.png": "/Pegs/static/media/rules.c000354a.png",
   "static/media/style.css": "/Pegs/static/media/vaporwave.ac6f41c3.jpg",
   "static/media/vaporwave.mp3": "/Pegs/static/media/vaporwave.f2fa89b9.mp3",
-  "static/css/main.71562b0a.chunk.css.map": "/Pegs/static/css/main.71562b0a.chunk.css.map",
+  "static/css/main.a925ad23.chunk.css.map": "/Pegs/static/css/main.a925ad23.chunk.css.map",
   "index.html": "/Pegs/index.html",
-  "precache-manifest.6913f5d55990566226a581d98b2d974a.js": "/Pegs/precache-manifest.6913f5d55990566226a581d98b2d974a.js",
+  "precache-manifest.5dd23c81f83c6e5fa111361397465440.js": "/Pegs/precache-manifest.5dd23c81f83c6e5fa111361397465440.js",
   "service-worker.js": "/Pegs/service-worker.js"
 }
