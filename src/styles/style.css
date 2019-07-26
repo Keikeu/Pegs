@@ -53,6 +53,12 @@ body, html {
    margin-right: 5px;
 }
 
+.container .audio-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .rules {
   margin-top: 20px;
   max-width: 217px;

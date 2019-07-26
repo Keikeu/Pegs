@@ -21,6 +21,7 @@ class Game extends React.Component {
     super(props);
     this.state = {
       showRules: false,
+      audio: false,
       history: [{
         pegs: [
           [-1,-1, 1, 1, 1,-1,-1],
@@ -92,6 +93,12 @@ class Game extends React.Component {
   toggleRules() {
     this.setState({
       showRules: !this.state.showRules,
+    })
+  }
+
+  toggleAudio() {
+    this.setState({
+      audio: !this.state.audio,
     })
   }
 
@@ -273,6 +280,7 @@ class Game extends React.Component {
     const stepNumber = this.state.stepNumber;
     const pegsNumber = this.state.pegsNumber;
     const showRules = this.state.showRules;
+    const audio = this.state.audio;
     const gameState = this.state.gameState;
 
     return (
@@ -280,10 +288,22 @@ class Game extends React.Component {
 
       {theme === "christmas" && (
         <div>
-          <audio autoPlay loop>
-            <source src={christmas} type="audio/mpeg"/>
-            <embed src={christmas} autostart="true" loop={true} hidden={true}/>
-          </audio>
+          {audio && (
+            <>
+              <audio autoPlay loop>
+                <source src={christmas} type="audio/mpeg"/>
+                <embed src={christmas} autostart="true" loop={true} hidden={true}/>
+              </audio>
+              <Button className="audio-btn" onClick={() => this.toggleAudio()}>
+              <i className="material-icons">volume_up</i>
+              </Button>
+            </>
+          )}
+          {!audio && (
+            <Button className="audio-btn" onClick={() => this.toggleAudio()}>
+            <i className="material-icons">volume_off</i>
+            </Button>
+          )}
           <Snow></Snow>
           <svg className="ground" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
@@ -296,34 +316,47 @@ class Game extends React.Component {
             <path d="M 15 100 Q 80 -100 120 100 " fill="url(#gradient)"/>
           </svg>
         </div>
-        )
-      }
+      )}
       {theme === "vaporwave" && (
-        <audio autoPlay loop>
-          <source src={vaporwave} type="audio/mpeg"/>
-          <embed src={vaporwave} autostart="true" loop={true} hidden={true}/>
-        </audio>
+        <div>
+        {audio && (
+          <>
+            <audio autoPlay loop>
+              <source src={vaporwave} type="audio/mpeg"/>
+              <embed src={vaporwave} autostart="true" loop={true} hidden={true}/>
+            </audio>
+            <Button className="audio-btn" onClick={() => this.toggleAudio()}>
+            <i className="material-icons">volume_up</i>
+            </Button>
+          </>
+        )}
+        {!audio && (
+          <Button className="audio-btn" onClick={() => this.toggleAudio()}>
+          <i className="material-icons">volume_off</i>
+          </Button>
+        )}
+        </div>
         )
       }
         <h1 className="title">Peg Solitaire</h1>
 
         <div className="options">
-            <Button className="options__btn" onClick={() => this.jumpTo(pegsActive.length === 0 ? stepNumber - 2 : stepNumber - 1)}>
-               <i className="material-icons">keyboard_backspace</i>
-               Undo
-            </Button>
-            <Button className="options__btn" onClick={() => this.jumpTo(0)}>
-               <i className="material-icons">replay</i>
-               Restart
-            </Button>
-            <Button className="options__btn" onClick={() => this.changeBoard(this.state.boardType)}>
-               <i className="material-icons">grain</i>
-               Switch board
-            </Button>
-            <Button className="options__btn" onClick={() => this.toggleRules()}>
-               <i className="material-icons">help_outline</i>
-               How to play
-            </Button>
+          <Button className="options__btn" onClick={() => this.jumpTo(pegsActive.length === 0 ? stepNumber - 2 : stepNumber - 1)}>
+             <i className="material-icons">keyboard_backspace</i>
+             Undo
+          </Button>
+          <Button className="options__btn" onClick={() => this.jumpTo(0)}>
+             <i className="material-icons">replay</i>
+             Restart
+          </Button>
+          <Button className="options__btn" onClick={() => this.changeBoard(this.state.boardType)}>
+             <i className="material-icons">grain</i>
+             Switch board
+          </Button>
+          <Button className="options__btn" onClick={() => this.toggleRules()}>
+             <i className="material-icons">help_outline</i>
+             How to play
+          </Button>
         </div>
 
         <div>
