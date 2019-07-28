@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&amp;subset=latin-ext');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-
 @import url('./style-christmas.css');
 @import url('./style-vaporwave.css');
+@import url('../../node_modules/react-alice-carousel/lib/alice-carousel.css');
 
 body, html {
   margin: 0;
@@ -69,8 +69,25 @@ body, html {
   width: 430px;
   margin: 10vh auto;
   display: grid;
+}
+
+.board.german,
+.board.diamond {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.board.asymmetrical {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.board.european,
+.board.english {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.board.square {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .board .peg {
@@ -170,6 +187,25 @@ body, html {
 .dialog--win h2 {
   color: #5dba16 !important;
 }
+
+.dialog h3 {
+  margin-bottom: 0;
+}
+.dialog .carousel-btn {
+  position: absolute;
+  top: 47%;
+  z-index: 4;
+}
+.dialog .carousel-btn:nth-of-type(2) {
+  left: 0%;
+}
+.dialog .carousel-btn:nth-of-type(3) {
+  left: 90.5%;
+}
+.dialog .carousel-btn i {
+  font-size: 40px !important;
+}
+
 
 @media (max-width: 992px) {
   .dialog {

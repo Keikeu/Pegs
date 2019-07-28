@@ -15,12 +15,14 @@ import Snow from './snow-animation.js';
 import Board from './components/board.js';
 import Rules from './components/rules.js';
 import State from './components/state.js';
+import BoardChoice from './components/board-choice.js';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showRules: false,
+      showBoardChoice: false,
       audio: false,
       history: [{
         pegs: [
@@ -44,29 +46,8 @@ class Game extends React.Component {
     }
   }
 
-  changeBoard(current) {
-    if(current === 'english') {
-      this.setState ({
-        boardType: 'european',
-        history: [{
-          pegs: [
-            [-1,-1, 1, 1, 1,-1,-1],
-            [-1, 1, 1, 1, 1, 1,-1],
-            [ 1, 1, 1, 0, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1, 1],
-            [-1, 1, 1, 1, 1, 1,-1],
-            [-1,-1, 1, 1, 1,-1,-1]
-          ],
-        }],
-        height: 7,
-        width: 7,
-        stepNumber: 0,
-        pegsNumber: 36,
-        defaultPegsNumber: 36,
-        gameState: null
-      });
-    } else if(current === 'european') {
+  changeBoard(index) {
+    if(index === 0) {
       this.setState ({
         boardType: 'english',
         history: [{
@@ -82,12 +63,115 @@ class Game extends React.Component {
         }],
         height: 7,
         width: 7,
-        stepNumber: 0,
         pegsNumber: 32,
         defaultPegsNumber: 32,
-        gameState: null
+      });
+    } else if(index === 1) {
+      this.setState ({
+        boardType: 'european',
+        history: [{
+          pegs: [
+            [-1,-1, 1, 1, 1,-1,-1],
+            [-1, 1, 1, 1, 1, 1,-1],
+            [ 1, 1, 1, 0, 1, 1, 1],
+            [ 1, 1, 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 1, 1, 1],
+            [-1, 1, 1, 1, 1, 1,-1],
+            [-1,-1, 1, 1, 1,-1,-1]
+          ],
+        }],
+        height: 7,
+        width: 7,
+        pegsNumber: 36,
+        defaultPegsNumber: 36,
+      });
+    } else if(index === 2) {
+      this.setState ({
+        boardType: 'german',
+        history: [{
+          pegs: [
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
+            [ 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 0, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1]
+          ],
+        }],
+        height: 9,
+        width: 9,
+        pegsNumber: 44,
+        defaultPegsNumber: 44,
+      });
+    } else if(index === 3) {
+      this.setState ({
+        boardType: 'asymmetrical',
+        history: [{
+          pegs: [
+            [-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1, 1, 1, 1,-1,-1,-1],
+            [ 1, 1, 1, 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 0, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 1, 1, 1, 1],
+            [-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1, 1, 1, 1,-1,-1,-1]
+          ],
+        }],
+        height: 8,
+        width: 8,
+        pegsNumber: 38,
+        defaultPegsNumber: 38,
+      });
+    } else if(index === 4) {
+      this.setState ({
+        boardType: 'square',
+        history: [{
+          pegs: [
+            [ 1, 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 0, 1, 1],
+            [ 1, 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 1, 1]
+          ],
+        }],
+        height: 6,
+        width: 6,
+        pegsNumber: 35,
+        defaultPegsNumber: 35,
+      });
+    } else if(index === 5) {
+      this.setState ({
+        boardType: 'diamond',
+        history: [{
+          pegs: [
+            [-1,-1,-1,-1, 1,-1,-1,-1,-1],
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1, 1, 1, 1, 1, 1,-1,-1],
+            [-1, 1, 1, 1, 1, 1, 1, 1,-1],
+            [ 1, 1, 1, 1, 0, 1, 1, 1, 1],
+            [-1, 1, 1, 1, 1, 1, 1, 1,-1],
+            [-1,-1, 1, 1, 1, 1, 1,-1,-1],
+            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
+            [-1,-1,-1,-1, 1,-1,-1,-1,-1]
+          ],
+        }],
+        height: 9,
+        width: 9,
+        pegsNumber: 40,
+        defaultPegsNumber: 40,
       });
     }
+
+    this.setState ({
+      showBoardChoice: false,
+      gameState: null,
+      stepNumber: 0,
+    });
   }
 
   toggleRules() {
@@ -99,6 +183,12 @@ class Game extends React.Component {
   toggleAudio() {
     this.setState({
       audio: !this.state.audio,
+    })
+  }
+
+  toggleBoardChoice() {
+    this.setState({
+      showBoardChoice: !this.state.showBoardChoice,
     })
   }
 
@@ -115,9 +205,10 @@ class Game extends React.Component {
 
   findPegsActive(pegs) {
     let pegsActive = [];
+    const {width, height} = this.state;
 
-    for(let i=0; i<this.state.height; i++) {
-      for(let j=0; j<this.state.width; j++) {
+    for(let i=0; i<height; i++) {
+      for(let j=0; j<width; j++) {
         if(pegs[i][j] === 3) {
           pegsActive.push([i,j]);
         }
@@ -128,9 +219,10 @@ class Game extends React.Component {
 
   findHolesActive(pegs) {
     let holesActive = [];
+    const {width, height} = this.state;
 
-    for(let i=0; i<this.state.height; i++) {
-      for(let j=0; j<this.state.width; j++) {
+    for(let i=0; i<height; i++) {
+      for(let j=0; j<width; j++) {
         if(pegs[i][j] === 2) {
           holesActive.push([i,j]);
         }
@@ -141,14 +233,15 @@ class Game extends React.Component {
 
   findPegsToMove(pegs) {
     let pegsToMove = [];
+    const {width, height} = this.state;
 
-    for(let i=0; i<this.state.height; i++) {
-      for(let j=0; j<this.state.width; j++) {
+    for(let i=0; i<height; i++) {
+      for(let j=0; j<width; j++) {
         if(pegs[i][j] === 1 && (
           (i-2>=0 && pegs[i-1][j] === 1 && (pegs[i-2][j] === 0 || pegs[i-2][j] === 2)) ||
-          (i+2<=6 && pegs[i+1][j] === 1 && (pegs[i+2][j] === 0 || pegs[i+2][j] === 2)) ||
+          (i+2<=(height-1) && pegs[i+1][j] === 1 && (pegs[i+2][j] === 0 || pegs[i+2][j] === 2)) ||
           (j-2>=0 && pegs[i][j-1] === 1 && (pegs[i][j-2] === 0 || pegs[i][j-2] === 2)) ||
-          (j+2<=6 && pegs[i][j+1] === 1 && (pegs[i][j+2] === 0 || pegs[i][j+2] === 2))
+          (j+2<=(width-1) && pegs[i][j+1] === 1 && (pegs[i][j+2] === 0 || pegs[i][j+2] === 2))
         )) {
           pegsToMove.push([i,j]);
         }
@@ -160,17 +253,18 @@ class Game extends React.Component {
 
   findHolesToFill(pegs, i, j) {
     let holesToFill = [];
+    const {width, height} = this.state;
 
     if (i-2>=0 && pegs[i-1][j] === 1 && pegs[i-2][j] === 0) {
       holesToFill.push([i-2,j]);
     }
-    if (i+2<=6 && pegs[i+1][j] === 1 && pegs[i+2][j] === 0) {
+    if (i+2<=(height-1) && pegs[i+1][j] === 1 && pegs[i+2][j] === 0) {
       holesToFill.push([i+2,j]);
     }
     if (j-2>=0 && pegs[i][j-1] === 1 && pegs[i][j-2] === 0) {
       holesToFill.push([i,j-2]);
     }
-    if (j+2<=6 && pegs[i][j+1] === 1 && pegs[i][j+2] === 0) {
+    if (j+2<=(width-1) && pegs[i][j+1] === 1 && pegs[i][j+2] === 0) {
       holesToFill.push([i,j+2]);
     }
 
@@ -195,8 +289,7 @@ class Game extends React.Component {
   }
 
   handlePegClick(i,j) {
-    const pegsNumber = this.state.pegsNumber;
-    const stepNumber = this.state.stepNumber;
+    const {pegsNumber, stepNumber, boardType} = this.state;
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[this.state.stepNumber];
     const pegs = current.pegs.map(x => ({...x}));
@@ -244,7 +337,7 @@ class Game extends React.Component {
       }, () => {
         setTimeout(() => {
           this.setState({
-            gameState: calculateGameState(pegsNumber - 1, this.findPegsToMove(pegs), this.findPegsActive(pegs), pegs)
+            gameState: calculateGameState(pegsNumber - 1, this.findPegsToMove(pegs), this.findPegsActive(pegs), pegs, boardType)
           });
         }, 500);
       });
@@ -273,17 +366,10 @@ class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history;
+    const {history, theme, stepNumber, pegsNumber, showRules, showBoardChoice, audio, gameState} = this.state;
     const current = history[this.state.stepNumber];
     const pegs = current.pegs.slice();
     const pegsActive = this.findPegsActive(pegs);
-
-    const theme = this.state.theme;
-    const stepNumber = this.state.stepNumber;
-    const pegsNumber = this.state.pegsNumber;
-    const showRules = this.state.showRules;
-    const audio = this.state.audio;
-    const gameState = this.state.gameState;
 
     return (
       <div className={"container " + theme}>
@@ -351,9 +437,9 @@ class Game extends React.Component {
              <i className="material-icons">replay</i>
              Restart
           </Button>
-          <Button className="options__btn" onClick={() => this.changeBoard(this.state.boardType)}>
-             <i className="material-icons">grain</i>
-             Switch board
+          <Button className="options__btn" onClick={() => this.toggleBoardChoice()}>
+             <i className="material-icons">image_aspect_ratio</i>
+             Other boards
           </Button>
           <Button className="options__btn" onClick={() => this.toggleRules()}>
              <i className="material-icons">help_outline</i>
@@ -365,6 +451,9 @@ class Game extends React.Component {
           <Board
             onClick={(i,j) => this.handlePegClick(i,j)}
             pegs = {pegs}
+            width = {this.state.width}
+            height = {this.state.height}
+            boardType = {this.state.boardType}
           />
         </div>
 
@@ -383,11 +472,11 @@ class Game extends React.Component {
 
         <State value={gameState} stepNumber={stepNumber} pegsNumber={pegsNumber} onClick={() => this.jumpTo(0)} onClose={() => this.setState({gameState: null})}/>
         <Rules value={showRules} onClick={() => this.toggleRules()}/>
+        <BoardChoice value={showBoardChoice} onClick={(index) => this.changeBoard(index)} onClose={() => this.toggleBoardChoice()} />
       </div>
     )
   }
 }
-
 
 function isInArray(array, item) {
   for(let i = 0; i < array.length; i++) {
@@ -398,12 +487,16 @@ function isInArray(array, item) {
   return false;
 }
 
-function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs) {
+function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boardType) {
   if(pegsToMove.length === 0 && pegsActive.length === 0) {
-    if(pegsNumber === 1 && pegs[3][3] === 1) {
-      return 'full-win';
-    } else if(pegsNumber === 1) {
-      return 'part-win';
+    if(pegsNumber === 1) {
+      if(boardType === "english" && pegs[3][3] === 1) { return 'full-win'; }
+      else if(boardType === "european" && pegs[4][3] === 1) { return 'full-win'; }
+      else if(boardType === "german" && pegs[4][4] === 1) { return 'full-win'; }
+      else if(boardType === "asymmetrical" && pegs[3][4] === 1) { return 'full-win'; }
+      else if(boardType === "square" && pegs[2][3] === 1) { return 'full-win'; }
+      else if(boardType === "diamond" && pegs[4][4] === 1) { return 'full-win'; }
+      else { return 'part-win'; }
     } else {
       return 'defeat';
     }
