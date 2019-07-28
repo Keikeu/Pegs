@@ -1,6 +1,6 @@
 .container.christmas {
   background-color: #101b3b;
-  background-image: linear-gradient(to bottom, #1a3075, #56b8ee);
+  background-image: linear-gradient(to bottom, #56b2ee, #2b5196);
 }
 
 .container.christmas .material-icons,
@@ -14,10 +14,10 @@
 }
 
 .container.christmas .board .peg-alive {
-  background-image: linear-gradient(to top, #8b1414, #9f2926, #b23c39, #c54e4c, #d86060);
+  background-image: linear-gradient(to top, #af3434, #f46060);
 }
 .container.christmas .board .peg-active {
-  background-image: linear-gradient(to top, #8b1414, #9f2926, #b23c39, #c54e4c, #d86060);
+  background-image: linear-gradient(to top, #af3434, #f46060);
   border: 2px solid #1a3075;
 }
 .container.christmas .board .peg-highlighted {
