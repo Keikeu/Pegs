@@ -242,9 +242,11 @@ class Game extends React.Component {
         stepNumber: history.length,
         pegsNumber: pegsNumber - 1,
       }, () => {
-        this.setState({
-          gameState: calculateGameState(pegsNumber - 1, this.findPegsToMove(pegs), this.findPegsActive(pegs), pegs)
-        });
+        setTimeout(() => {
+          this.setState({
+            gameState: calculateGameState(pegsNumber - 1, this.findPegsToMove(pegs), this.findPegsActive(pegs), pegs)
+          });
+        }, 500);
       });
     }
 
@@ -379,12 +381,8 @@ class Game extends React.Component {
           </Select>
         </div>
 
-        <div>
-          <State value={gameState} stepNumber={stepNumber} pegsNumber={pegsNumber} onClick={() => this.jumpTo(0)} onClose={() => this.setState({gameState: null})}/>
-        </div>
-        <div>
-          <Rules value={showRules} onClick={() => this.toggleRules()}/>
-        </div>
+        <State value={gameState} stepNumber={stepNumber} pegsNumber={pegsNumber} onClick={() => this.jumpTo(0)} onClose={() => this.setState({gameState: null})}/>
+        <Rules value={showRules} onClick={() => this.toggleRules()}/>
       </div>
     )
   }
