@@ -13,7 +13,8 @@
   color: #ffffff;
 }
 
-.container.vaporwave .close-btn .material-icons {
+.container.vaporwave .close-btn .material-icons,
+.container.vaporwave .carousel-btn .material-icons {
   color: #444444;
 }
 

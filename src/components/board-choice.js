@@ -33,9 +33,10 @@ class BoardChoice extends React.Component {
       dotsDisabled={true}
       buttonsDisabled={true}
       slideToIndex={currentIndex}
+      startIndex={currentIndex}
       onSlideChanged={this.onSlideChanged}
     >
-      { items.map((item, i) => <div key={i}> <h3>{itemsNames[i]}</h3> <img src={item} alt={itemsNames[i]}/> </div>) }
+      { items.map((item, i) => <div key={i}> <h3>{itemsNames[i]}</h3> <img className="board-img" src={item} alt={itemsNames[i]}/> </div>) }
     </AliceCarousel>);
   }
 
