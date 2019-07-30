@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/Pegs/static/css/1.5ee657d3.chunk.css"
   },
   {
-    "revision": "a07713e7be6e5e8a1bed2e71860920a4",
+    "revision": "c937b2f7aca964b226edb756053d5248",
     "url": "/Pegs/index.html"
   }
 ];
