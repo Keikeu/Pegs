@@ -244,19 +244,23 @@ body, html {
 
 @media (max-width: 576px) {
   .board {
-    height: 320px;
-    width: 320px;
-    margin: 4vh auto;
+    height: 90vw !important;
+    width: 90vw !important;
+    max-height: 380px;
+    max-width: 380px;
+    margin: 5vh auto;
   }
 
   .score {
     bottom: 20px;
     left: 20px;
+    font-size: 14px;
   }
 
   .theme-select {
     bottom: 20px;
     right: 20px;
+    font-size: 14px;
   }
 
   .dialog {
@@ -279,5 +283,32 @@ body, html {
 
   .dialog h3 {
     font-size: 16px;
+  }
+
+  .rules {
+    max-width: 110px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin: 10px;
+  }
+
+  .options .options__btn {
+     font-size: 12px;
+  }
+
+  .options__btn i {
+     font-size: 20px;
+  }
+
+  .container .select {
+    font-size: 14px;
+  }
+}
+
+@media (max-height: 560px) {
+  .board {
+    margin: 0 auto;
   }
 }
