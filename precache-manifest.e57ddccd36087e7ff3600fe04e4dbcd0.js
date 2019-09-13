@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/Pegs/static/media/asymmetrical.08e5993d.png"
   },
   {
-    "revision": "057191315adf7b8cb90b",
-    "url": "/Pegs/static/css/main.66c9514d.chunk.css"
+    "revision": "6a503309ac63b4073afd",
+    "url": "/Pegs/static/css/main.20ed4512.chunk.css"
   },
   {
     "revision": "ac6f41c3f0aa9e0ea74f0d6b0121d447",
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/Pegs/static/media/rules.c000354a.png"
   },
   {
-    "revision": "057191315adf7b8cb90b",
-    "url": "/Pegs/static/js/main.05719131.chunk.js"
+    "revision": "6a503309ac63b4073afd",
+    "url": "/Pegs/static/js/main.6a503309.chunk.js"
   },
   {
     "revision": "2e4f56d9546dd7c041c71298cebfb6cd",
@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/Pegs/static/css/1.5ee657d3.chunk.css"
   },
   {
-    "revision": "c31b11b7893b326227a54e419d0befef",
+    "revision": "299a3e2d741f24bcdba4c4db03379d29",
     "url": "/Pegs/index.html"
   }
 ];
