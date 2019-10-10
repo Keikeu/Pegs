@@ -51,7 +51,7 @@ class BoardChoice extends React.Component {
             <Button className="carousel-btn" onClick={() => this.slidePrev()}><i className="material-icons">chevron_left</i></Button>
             <Button className="carousel-btn" onClick={() => this.slideNext()}><i className="material-icons">chevron_right</i></Button>
             { this.renderGallery() }
-            <Button variant="contained" onClick={() => this.props.onClick(this.state.currentIndex)}>Play</Button>
+            <Button className="play-btn" variant="contained" onClick={() => this.props.onClick(this.state.currentIndex)}>Play</Button>
           </div>
         </div>
       );

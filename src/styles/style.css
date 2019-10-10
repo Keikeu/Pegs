@@ -67,7 +67,6 @@ body, html {
 .board {
   height: 440px;
   width: 440px;
-  overflow: auto;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -173,6 +172,9 @@ body, html {
   font-size: 24px;
   cursor: pointer;
 }
+.dialog .play-btn {
+  margin-top: 5%;
+}
 .dialog--defeat,
 .dialog--win {
   top: 25%;
@@ -198,7 +200,7 @@ body, html {
 }
 
 .dialog h3 {
-  margin-bottom: 0;
+  margin: 0;
 }
 .dialog .carousel-btn {
   position: absolute;
@@ -251,7 +253,6 @@ body, html {
     width: 95vw !important;
     max-height: 380px;
     max-width: 380px;
-    overflow: auto;
     margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
@@ -291,6 +292,10 @@ body, html {
     font-size: 16px;
   }
 
+  .dialog .play-btn {
+    margin-top: 0;
+  }
+
   .rules {
     max-width: 110px;
   }
@@ -313,8 +318,26 @@ body, html {
   }
 }
 
-@media (max-height: 560px) {
+@media (orientation: portrait) and (max-height: 560px) {
   .board {
     margin-top: 25vh;
   }
+}
+
+@media (orientation: landscape) and (max-height: 700px) {
+   .board {
+     margin-top: 25vh;
+     height: 400px;
+     width: 400px;
+   }
+}
+
+@media (orientation: landscape) and (max-height: 800px) {
+   .dialog {
+     top: 10%;
+   }
+
+   .dialog .board-img {
+     max-width: 300px;
+   }
 }
