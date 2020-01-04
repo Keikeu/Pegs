@@ -5,7 +5,8 @@
 @import url('./style-vaporwave.css');
 @import url('../../node_modules/react-alice-carousel/lib/alice-carousel.css');
 
-body, html {
+body,
+html {
   margin: 0;
 }
 
@@ -21,10 +22,10 @@ body, html {
 }
 
 .title {
-   text-align: center;
-   margin: 20px;
-   font-size: 32px;
-   font-weight: 700;
+  text-align: center;
+  margin: 20px;
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .score {
@@ -46,11 +47,11 @@ body, html {
   text-align: center;
 }
 .options .options__btn {
-   font-size: 14px;
-   color: #444444;
+  font-size: 14px;
+  color: #444444;
 }
 .options__btn i {
-   margin-right: 5px;
+  margin-right: 5px;
 }
 
 .container .audio-btn {
@@ -69,10 +70,19 @@ body, html {
   width: 440px;
   margin: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   display: grid;
 }
 
+.board.tutorial {
+  height: 260px;
+  width: 260px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
 .board.german,
 .board.diamond {
   height: 510px;
@@ -106,10 +116,7 @@ body, html {
   border-radius: 50%;
   box-sizing: border-box;
   margin: 5px;
-  transition-property: box-shadow;
-  transition-duration: 100ms;
-  transition-timing-function: ease-in-out;
-  cursor: pointer;
+  transition: box-shadow 0.1s ease-in-out;
   z-index: 1;
 }
 .board .peg-alive {
@@ -117,18 +124,20 @@ body, html {
   background-image: linear-gradient(to top, #ffbf5e, #ffc369, #ffc773, #ffcb7e, #ffcf88);
   background-size: cover;
   background-position: center center;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
 }
 .board .peg-alive:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 .board .peg-active {
   background-color: #ffc369;
   background-image: linear-gradient(to top, #ffbf5e, #ffc369, #ffc773, #ffcb7e, #ffcf88);
   background-size: cover;
   background-position: center center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   border: 2px solid #3b92d6;
+  cursor: pointer;
 }
 .board .peg-blank {
   border: 2px solid #a3b7cf;
@@ -136,6 +145,7 @@ body, html {
 .board .peg-highlighted {
   background-color: rgba(0, 0, 0, 0.1);
   border: 2px solid #3b92d6;
+  cursor: pointer;
 }
 
 .dialog-container {
@@ -153,7 +163,7 @@ body, html {
   left: 25%;
   width: 50%;
   box-sizing: border-box;
-  background-color: #f3f3f3;
+  background-color: #ffffff;
   padding: 30px 40px 40px;
   text-align: center;
   border-radius: 5px;
@@ -222,7 +232,6 @@ body, html {
   height: auto;
 }
 
-
 @media (max-width: 992px) {
   .dialog {
     top: 20%;
@@ -239,7 +248,7 @@ body, html {
   }
 
   .board .peg-alive:hover {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 
   .board .peg:active {
@@ -255,7 +264,10 @@ body, html {
     max-width: 380px;
     margin: auto;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
   }
 
   .score {
@@ -306,11 +318,11 @@ body, html {
   }
 
   .options .options__btn {
-     font-size: 12px;
+    font-size: 12px;
   }
 
   .options__btn i {
-     font-size: 20px;
+    font-size: 20px;
   }
 
   .container .select {
@@ -325,19 +337,19 @@ body, html {
 }
 
 @media (orientation: landscape) and (max-height: 700px) {
-   .board {
-     margin-top: 25vh;
-     height: 400px;
-     width: 400px;
-   }
+  .board {
+    margin-top: 25vh;
+    height: 400px;
+    width: 400px;
+  }
 }
 
 @media (orientation: landscape) and (max-height: 800px) {
-   .dialog {
-     top: 10%;
-   }
+  .dialog {
+    top: 10%;
+  }
 
-   .dialog .board-img {
-     max-width: 300px;
-   }
+  .dialog .board-img {
+    max-width: 300px;
+  }
 }

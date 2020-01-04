@@ -17,14 +17,17 @@
 .container.christmas .board .peg-alive {
   background-image: linear-gradient(to top, #af3434, #f46060);
 }
+
 .container.christmas .board .peg-active {
   background-image: linear-gradient(to top, #af3434, #f46060);
   border: 2px solid #1a3075;
 }
+
 .container.christmas .board .peg-highlighted {
   background-color: rgba(0, 0, 0, 0.1);
   border: 2px solid #1a3075;
 }
+
 .container.christmas .board .peg-blank {
   border: 2px solid #909399;
 }

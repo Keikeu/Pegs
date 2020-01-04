@@ -2,193 +2,72 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/style.css';
 
-import Button from '@material-ui/core/Button';
-
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-
-import christmas from './media/christmas.mp3';
-import vaporwave from './media/vaporwave.mp3';
-
-import Snow from './snow-animation.js';
-
 import Board from './components/board.js';
 import Rules from './components/rules.js';
 import State from './components/state.js';
+import Theme from './components/theme.js';
 import BoardChoice from './components/board-choice.js';
+import Navigation from './components/navigation.js';
+import Score from './components/score.js';
+import ThemeSelect from './components/theme-select.js';
+
+import { boards } from './boards.js';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
+
+    const index = localStorage.getItem('board') || 0;
+
     this.state = {
-      showRules: false,
-      showBoardChoice: false,
+      rulesModalOpen: localStorage.getItem('first-time'),
+      boardsModalOpen: false,
       audio: false,
-      history: [{
-        pegs: [
-          [-1,-1, 1, 1, 1,-1,-1],
-          [-1,-1, 1, 1, 1,-1,-1],
-          [ 1, 1, 1, 1, 1, 1, 1],
-          [ 1, 1, 1, 0, 1, 1, 1],
-          [ 1, 1, 1, 1, 1, 1, 1],
-          [-1,-1, 1, 1, 1,-1,-1],
-          [-1,-1, 1, 1, 1,-1,-1]
-        ],
-      }],
-      height: 7,
-      width: 7,
-      stepNumber: 0,
-      pegsNumber: 32,
-      defaultPegsNumber: 32,
+      boardType: boards[index].boardType,
+      history: boards[index].history,
+      height: boards[index].height,
+      width: boards[index].width,
+      pegsNumber: boards[index].pegsNumber,
+      defaultPegsNumber: boards[index].defaultPegsNumber,
       gameState: null,
-      boardType: 'english',
+      stepNumber: 0,
       theme: 'default',
     }
   }
 
   changeBoard(index) {
-    if(index === 0) {
-      this.setState ({
-        boardType: 'english',
-        history: [{
-          pegs: [
-            [-1,-1, 1, 1, 1,-1,-1],
-            [-1,-1, 1, 1, 1,-1,-1],
-            [ 1, 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 0, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1, 1],
-            [-1,-1, 1, 1, 1,-1,-1],
-            [-1,-1, 1, 1, 1,-1,-1]
-          ],
-        }],
-        height: 7,
-        width: 7,
-        pegsNumber: 32,
-        defaultPegsNumber: 32,
-      });
-    } else if(index === 1) {
-      this.setState ({
-        boardType: 'european',
-        history: [{
-          pegs: [
-            [-1,-1, 1, 1, 1,-1,-1],
-            [-1, 1, 1, 1, 1, 1,-1],
-            [ 1, 1, 1, 0, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1, 1],
-            [-1, 1, 1, 1, 1, 1,-1],
-            [-1,-1, 1, 1, 1,-1,-1]
-          ],
-        }],
-        height: 7,
-        width: 7,
-        pegsNumber: 36,
-        defaultPegsNumber: 36,
-      });
-    } else if(index === 2) {
-      this.setState ({
-        boardType: 'german',
-        history: [{
-          pegs: [
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
-            [ 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 0, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1]
-          ],
-        }],
-        height: 9,
-        width: 9,
-        pegsNumber: 44,
-        defaultPegsNumber: 44,
-      });
-    } else if(index === 3) {
-      this.setState ({
-        boardType: 'asymmetrical',
-        history: [{
-          pegs: [
-            [-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1, 1, 1, 1,-1,-1,-1],
-            [ 1, 1, 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 0, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1, 1, 1],
-            [-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1, 1, 1, 1,-1,-1,-1]
-          ],
-        }],
-        height: 8,
-        width: 8,
-        pegsNumber: 38,
-        defaultPegsNumber: 38,
-      });
-    } else if(index === 4) {
-      this.setState ({
-        boardType: 'square',
-        history: [{
-          pegs: [
-            [ 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 0, 1, 1],
-            [ 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1],
-            [ 1, 1, 1, 1, 1, 1]
-          ],
-        }],
-        height: 6,
-        width: 6,
-        pegsNumber: 35,
-        defaultPegsNumber: 35,
-      });
-    } else if(index === 5) {
-      this.setState ({
-        boardType: 'diamond',
-        history: [{
-          pegs: [
-            [-1,-1,-1,-1, 1,-1,-1,-1,-1],
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1, 1, 1, 1, 1, 1,-1,-1],
-            [-1, 1, 1, 1, 1, 1, 1, 1,-1],
-            [ 1, 1, 1, 1, 0, 1, 1, 1, 1],
-            [-1, 1, 1, 1, 1, 1, 1, 1,-1],
-            [-1,-1, 1, 1, 1, 1, 1,-1,-1],
-            [-1,-1,-1, 1, 1, 1,-1,-1,-1],
-            [-1,-1,-1,-1, 1,-1,-1,-1,-1]
-          ],
-        }],
-        height: 9,
-        width: 9,
-        pegsNumber: 40,
-        defaultPegsNumber: 40,
-      });
-    }
-
     this.setState ({
-      showBoardChoice: false,
+      rulesModalOpen: false,
+      boardsModalOpen: false,
+      audio: false,
+      boardType: boards[index].boardType,
+      history: boards[index].history,
+      height: boards[index].height,
+      width: boards[index].width,
+      pegsNumber: boards[index].pegsNumber,
+      defaultPegsNumber: boards[index].defaultPegsNumber,
       gameState: null,
       stepNumber: 0,
     });
+
+    localStorage.setItem('board', boards[index].boardType);
   }
 
-  toggleRules() {
+  toggleRulesModal() {
     this.setState({
-      showRules: !this.state.showRules,
+      rulesModalOpen: !this.state.rulesModalOpen,
+    })
+  }
+
+  toggleBoardsModal() {
+    this.setState({
+      boardsModalOpen: !this.state.boardsModalOpen,
     })
   }
 
   toggleAudio() {
     this.setState({
       audio: !this.state.audio,
-    })
-  }
-
-  toggleBoardChoice() {
-    this.setState({
-      showBoardChoice: !this.state.showBoardChoice,
     })
   }
 
@@ -366,7 +245,7 @@ class Game extends React.Component {
   }
 
   render() {
-    const {history, theme, stepNumber, pegsNumber, showRules, showBoardChoice, audio, gameState} = this.state;
+    const {history, theme, stepNumber, pegsNumber, rulesModalOpen, boardsModalOpen, audio, gameState} = this.state;
     const current = history[this.state.stepNumber];
     const pegs = current.pegs.slice();
     const pegsActive = this.findPegsActive(pegs);
@@ -374,105 +253,54 @@ class Game extends React.Component {
     return (
       <div className={"container " + theme}>
 
-      {theme === "christmas" && (
-        <div>
-          {audio && (
-            <>
-              <audio autoPlay loop>
-                <source src={christmas} type="audio/mpeg"/>
-                <embed src={christmas} autostart="true" loop={true} hidden={true}/>
-              </audio>
-              <Button className="audio-btn" onClick={() => this.toggleAudio()}>
-              <i className="material-icons">volume_up</i>
-              </Button>
-            </>
-          )}
-          {!audio && (
-            <Button className="audio-btn" onClick={() => this.toggleAudio()}>
-            <i className="material-icons">volume_off</i>
-            </Button>
-          )}
-          <Snow></Snow>
-          <svg className="ground" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#8fa5b3" />
-            </linearGradient>
-          </defs>
-            <path d="M -40 100 Q 10 -70 60 100 " fill="url(#gradient)"/>
-            <path d="M 15 100 Q 80 -100 120 100 " fill="url(#gradient)"/>
-          </svg>
-        </div>
-      )}
-      {theme === "vaporwave" && (
-        <div>
-        {audio && (
-          <>
-            <audio autoPlay loop>
-              <source src={vaporwave} type="audio/mpeg"/>
-              <embed src={vaporwave} autostart="true" loop={true} hidden={true}/>
-            </audio>
-            <Button className="audio-btn" onClick={() => this.toggleAudio()}>
-            <i className="material-icons">volume_up</i>
-            </Button>
-          </>
-        )}
-        {!audio && (
-          <Button className="audio-btn" onClick={() => this.toggleAudio()}>
-          <i className="material-icons">volume_off</i>
-          </Button>
-        )}
-        </div>
-        )
-      }
+        <Theme theme={theme} audio={audio} toggleAudio={this.toggleAudio.bind(this)} />
+
         <h1 className="title">Peg Solitaire</h1>
 
-        <div className="options">
-          <Button className="options__btn" onClick={() => this.jumpTo(pegsActive.length === 0 ? stepNumber - 2 : stepNumber - 1)}>
-             <i className="material-icons">keyboard_backspace</i>
-             Undo
-          </Button>
-          <Button className="options__btn" onClick={() => this.jumpTo(0)}>
-             <i className="material-icons">replay</i>
-             Restart
-          </Button>
-          <Button className="options__btn" onClick={() => this.toggleBoardChoice()}>
-             <i className="material-icons">image_aspect_ratio</i>
-             Other boards
-          </Button>
-          <Button className="options__btn" onClick={() => this.toggleRules()}>
-             <i className="material-icons">help_outline</i>
-             How to play
-          </Button>
-        </div>
+        <Navigation
+          jumpTo={this.jumpTo.bind(this)}
+          toggleBoardsModal={this.toggleBoardsModal.bind(this)}
+          toggleRulesModal={this.toggleRulesModal.bind(this)}
+          pegsActive={pegsActive}
+          stepNumber={stepNumber}
+        />
 
-        <div>
-          <Board
-            onClick={(i,j) => this.handlePegClick(i,j)}
-            pegs = {pegs}
-            width = {this.state.width}
-            height = {this.state.height}
-            boardType = {this.state.boardType}
+        <Board
+          onClick={(i,j) => this.handlePegClick(i,j)}
+          pegs={pegs}
+          width={this.state.width}
+          height={this.state.height}
+          boardType={this.state.boardType}
+        />
+
+        <Score
+          stepNumber={stepNumber}
+          pegsNumber={pegsNumber}
+        />
+
+        <ThemeSelect
+          changeTheme={this.changeTheme.bind(this)}
+          theme={theme}
+        />
+
+        <State
+          value={gameState}
+          stepNumber={stepNumber}
+          pegsNumber={pegsNumber}
+          onClick={() => this.jumpTo(0)}
+          onClose={() => this.setState({gameState: null})}
+        />
+
+        {rulesModalOpen &&
+          <Rules onClose={() => this.toggleRulesModal()} />
+        }
+
+        {boardsModalOpen &&
+          <BoardChoice
+            onClick={(index) => this.changeBoard(index)}
+            onClose={() => this.toggleBoardsModal()}
           />
-        </div>
-
-        <div className="score">
-          <div>Moves: {Math.floor(stepNumber/2)}</div>
-          <div>Pegs left: {pegsNumber}</div>
-        </div>
-        <div className="theme-select">
-          <span>Theme:</span>
-          <Select onChange={this.changeTheme} value={this.state.theme} className="select">
-            <MenuItem value="default">Default</MenuItem>
-            <MenuItem value="christmas">Christmas</MenuItem>
-            <MenuItem value="vaporwave">Vaporwave</MenuItem>
-          </Select>
-        </div>
-
-        <State value={gameState} stepNumber={stepNumber} pegsNumber={pegsNumber} onClick={() => this.jumpTo(0)} onClose={() => this.setState({gameState: null})}/>
-        <Rules value={showRules} onClick={() => this.toggleRules()}/>
-        <BoardChoice value={showBoardChoice} onClick={(index) => this.changeBoard(index)} onClose={() => this.toggleBoardChoice()} />
+        }
       </div>
     )
   }
@@ -488,14 +316,15 @@ function isInArray(array, item) {
 }
 
 function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boardType) {
-  if(pegsToMove.length === 0 && pegsActive.length === 0) {
-    if(pegsNumber === 1) {
-      if(boardType === "english" && pegs[3][3] === 1) { return 'full-win'; }
-      else if(boardType === "european" && pegs[4][3] === 1) { return 'full-win'; }
-      else if(boardType === "german" && pegs[4][4] === 1) { return 'full-win'; }
-      else if(boardType === "asymmetrical" && pegs[3][4] === 1) { return 'full-win'; }
-      else if(boardType === "square" && pegs[2][3] === 1) { return 'full-win'; }
-      else if(boardType === "diamond" && pegs[4][4] === 1) { return 'full-win'; }
+  if (pegsToMove.length === 0 && pegsActive.length === 0) {
+    if (pegsNumber === 1) {
+      if (boardType === "tutorial")                              { return 'full-win'; }
+      else if (boardType === "english"      && pegs[3][3] === 1) { return 'full-win'; }
+      else if (boardType === "european"     && pegs[4][3] === 1) { return 'full-win'; }
+      else if (boardType === "german"       && pegs[4][4] === 1) { return 'full-win'; }
+      else if (boardType === "asymmetrical" && pegs[3][4] === 1) { return 'full-win'; }
+      else if (boardType === "square"       && pegs[2][3] === 1) { return 'full-win'; }
+      else if (boardType === "diamond"      && pegs[4][4] === 1) { return 'full-win'; }
       else { return 'part-win'; }
     } else {
       return 'defeat';

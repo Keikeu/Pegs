@@ -21,14 +21,17 @@
 .container.vaporwave .board .peg-alive {
   background-image: linear-gradient(to top, #00bebe, #00cece, #00dede, #00eeee, #00ffff);
 }
+
 .container.vaporwave .board .peg-active {
   background-image: linear-gradient(to top, #00bebe, #00cece, #00dede, #00eeee, #00ffff);
   border: 2px solid #5735B7;
 }
+
 .container.vaporwave .board .peg-highlighted {
   background-color: rgba(0, 0, 0, 0.1);
   border: 2px solid #5735B7;
 }
+
 .container.vaporwave .board .peg-blank {
   border: 2px solid #cccccc;
 }
