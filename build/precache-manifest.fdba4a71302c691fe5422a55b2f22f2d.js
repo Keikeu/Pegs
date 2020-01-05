@@ -1,23 +1,27 @@
 self.__precacheManifest = [
   {
-    "revision": "08e5993dfec41ba26eb52628c0d4b5ed",
-    "url": "/Pegs/static/media/asymmetrical.08e5993d.png"
+    "revision": "4b5c37b5acd612323c83",
+    "url": "/Pegs/static/css/main.97cc52a5.chunk.css"
   },
   {
-    "revision": "057191315adf7b8cb90b",
-    "url": "/Pegs/static/css/main.66c9514d.chunk.css"
+    "revision": "4b5c37b5acd612323c83",
+    "url": "/Pegs/static/js/main.4b5c37b5.chunk.js"
   },
   {
-    "revision": "ac6f41c3f0aa9e0ea74f0d6b0121d447",
-    "url": "/Pegs/static/media/vaporwave.ac6f41c3.jpg"
+    "revision": "1ee0245360e9e3707702",
+    "url": "/Pegs/static/css/1.a99e905c.chunk.css"
   },
   {
-    "revision": "c4e6231d8f9b6fde243b",
-    "url": "/Pegs/static/js/1.c4e6231d.chunk.js"
+    "revision": "1ee0245360e9e3707702",
+    "url": "/Pegs/static/js/1.1ee02453.chunk.js"
   },
   {
     "revision": "57aba3296a7997c657c8",
     "url": "/Pegs/static/js/runtime~main.57aba329.js"
+  },
+  {
+    "revision": "9facfc6b207f01f9cf48e134bdcc47f3",
+    "url": "/Pegs/static/media/rules.9facfc6b.gif"
   },
   {
     "revision": "03f55f644f0c8e54f71449c4f79cbec5",
@@ -28,12 +32,12 @@ self.__precacheManifest = [
     "url": "/Pegs/static/media/vaporwave.f2fa89b9.mp3"
   },
   {
-    "revision": "c000354a5ba48d2c0468747b0d5b7432",
-    "url": "/Pegs/static/media/rules.c000354a.png"
+    "revision": "3e472493a8d9094b3a757414a74f42f0",
+    "url": "/Pegs/static/media/tutorial.3e472493.png"
   },
   {
-    "revision": "057191315adf7b8cb90b",
-    "url": "/Pegs/static/js/main.05719131.chunk.js"
+    "revision": "08e5993dfec41ba26eb52628c0d4b5ed",
+    "url": "/Pegs/static/media/asymmetrical.08e5993d.png"
   },
   {
     "revision": "2e4f56d9546dd7c041c71298cebfb6cd",
@@ -52,15 +56,11 @@ self.__precacheManifest = [
     "url": "/Pegs/static/media/square.a55ab0f9.png"
   },
   {
-    "revision": "b37eb7c881cbd1966fa4f7409ccd6296",
-    "url": "/Pegs/static/media/european.b37eb7c8.png"
+    "revision": "ac6f41c3f0aa9e0ea74f0d6b0121d447",
+    "url": "/Pegs/static/media/vaporwave.ac6f41c3.jpg"
   },
   {
-    "revision": "c4e6231d8f9b6fde243b",
-    "url": "/Pegs/static/css/1.5ee657d3.chunk.css"
-  },
-  {
-    "revision": "c31b11b7893b326227a54e419d0befef",
+    "revision": "dd6ebb864238860c9c07d74588b40250",
     "url": "/Pegs/index.html"
   }
 ];
