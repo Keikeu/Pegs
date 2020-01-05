@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './styles/style.css';
 
 import Board from './components/board.js';
-import Rules from './components/rules.js';
-import State from './components/state.js';
 import Theme from './components/theme.js';
-import BoardChoice from './components/board-choice.js';
-import Navigation from './components/navigation.js';
 import Score from './components/score.js';
+import Navigation from './components/navigation.js';
 import ThemeSelect from './components/theme-select.js';
+import RulesModal from './components/rules-modal.js';
+import StateModal from './components/state-modal.js';
+import BoardsModal from './components/boards-modal.js';
 
 import { boards } from './boardsMap.js';
 
@@ -39,7 +39,6 @@ class Game extends React.Component {
     this.setState ({
       rulesModalOpen: false,
       boardsModalOpen: false,
-      audio: false,
       boardType: boards[index].boardType,
       history: boards[index].history,
       height: boards[index].height,
@@ -142,7 +141,7 @@ class Game extends React.Component {
     return holesToFill;
   }
 
-  deleteTheMiddlePeg(i,j,holesToFill,pegs) {
+  deleteTheMiddlePeg(i, j, holesToFill, pegs) {
     if      (i > holesToFill[0][0]) { pegs[i-1][j] = 0; }
     else if (i < holesToFill[0][0]) { pegs[i+1][j] = 0; }
     else if (j > holesToFill[0][1]) { pegs[i][j-1] = 0; }
@@ -226,6 +225,8 @@ class Game extends React.Component {
     this.setState({
       theme: event.target.value,
     });
+    
+    localStorage.setItem('theme', event.target.value);
   }
 
   render() {
@@ -268,7 +269,7 @@ class Game extends React.Component {
           theme={theme}
         />
 
-        <State
+        <StateModal
           value={gameState}
           stepNumber={stepNumber}
           pegsNumber={pegsNumber}
@@ -277,11 +278,11 @@ class Game extends React.Component {
         />
 
         {rulesModalOpen &&
-          <Rules onClose={() => this.toggleRulesModal()} />
+          <RulesModal onClose={() => this.toggleRulesModal()} />
         }
 
         {boardsModalOpen &&
-          <BoardChoice
+          <BoardsModal
             onClick={(index) => this.changeBoard(index)}
             onClose={() => this.toggleBoardsModal()}
           />

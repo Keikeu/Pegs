@@ -10,7 +10,7 @@ const Theme = ({ theme, audio, toggleAudio }) => (
       <div>
         {audio && (
           <>
-            <audio autoPlay loop src={christmas} type="audio/mpeg" />
+            <audio autoPlay loop src={christmas} type="audio/mpeg"/>
             <Button className="audio-btn" onClick={() => toggleAudio()}>
               <i className="material-icons">volume_up</i>
             </Button>
