@@ -3,7 +3,6 @@ export const boards = [
     boardType: 'tutorial',
     height: 4,
     width: 4,
-    pegsNumber: 5,
     defaultPegsNumber: 5,
     history: [{
       pegs: [
@@ -18,7 +17,6 @@ export const boards = [
     boardType: 'english',
     height: 7,
     width: 7,
-    pegsNumber: 32,
     defaultPegsNumber: 32,
     history: [{
       pegs: [
@@ -33,28 +31,9 @@ export const boards = [
     }],
   },
   {
-    boardType: 'european',
-    height: 7,
-    width: 7,
-    pegsNumber: 36,
-    defaultPegsNumber: 36,
-    history: [{
-      pegs: [
-        [-1,-1, 1, 1, 1,-1,-1],
-        [-1, 1, 1, 1, 1, 1,-1],
-        [ 1, 1, 1, 0, 1, 1, 1],
-        [ 1, 1, 1, 1, 1, 1, 1],
-        [ 1, 1, 1, 1, 1, 1, 1],
-        [-1, 1, 1, 1, 1, 1,-1],
-        [-1,-1, 1, 1, 1,-1,-1]
-      ],
-    }],
-  },
-  {
     boardType: 'german',
     height: 9,
     width: 9,
-    pegsNumber: 44,
     defaultPegsNumber: 44,
     history: [{
       pegs: [
@@ -74,7 +53,6 @@ export const boards = [
     boardType: 'asymmetrical',
     height: 8,
     width: 8,
-    pegsNumber: 38,
     defaultPegsNumber: 38,
     history: [{
       pegs: [
@@ -93,7 +71,6 @@ export const boards = [
     boardType: 'square',
     height: 6,
     width: 6,
-    pegsNumber: 35,
     defaultPegsNumber: 35,
     history: [{
       pegs: [
@@ -110,7 +87,6 @@ export const boards = [
     boardType: 'diamond',
     height: 9,
     width: 9,
-    pegsNumber: 40,
     defaultPegsNumber: 40,
     history: [{
       pegs: [

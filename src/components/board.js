@@ -7,7 +7,7 @@ class Board extends React.Component {
       <Peg
         key={i}
         value={this.props.pegs[Math.floor(i/this.props.width)][i%this.props.height]}
-        onClick={() => this.props.onClick(Math.floor(i/this.props.width),i%this.props.height)}
+        onClick={() => this.props.onClick(Math.floor(i/this.props.width), i%this.props.height)}
       />
     );
   }
@@ -15,11 +15,11 @@ class Board extends React.Component {
   render() {
     const board = [];
 
-    for(let i=0; i<this.props.width*this.props.height; i++) {
+    for (let i = 0; i < this.props.width * this.props.height; i++) {
       board.push(this.renderPeg(i))
     }
 
-    return(
+    return (
       <div className={"board " + this.props.boardType}>
         {board}
       </div>

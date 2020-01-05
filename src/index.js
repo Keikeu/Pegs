@@ -11,7 +11,7 @@ import Navigation from './components/navigation.js';
 import Score from './components/score.js';
 import ThemeSelect from './components/theme-select.js';
 
-import { boards } from './boards.js';
+import { boards } from './boardsMap.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -20,18 +20,18 @@ class Game extends React.Component {
     const index = localStorage.getItem('board') || 0;
 
     this.state = {
-      rulesModalOpen: localStorage.getItem('first-time'),
+      rulesModalOpen: localStorage.getItem('board') === '0' ? true : false,
       boardsModalOpen: false,
       audio: false,
       boardType: boards[index].boardType,
       history: boards[index].history,
       height: boards[index].height,
       width: boards[index].width,
-      pegsNumber: boards[index].pegsNumber,
+      pegsNumber: boards[index].defaultPegsNumber,
       defaultPegsNumber: boards[index].defaultPegsNumber,
       gameState: null,
       stepNumber: 0,
-      theme: 'default',
+      theme: localStorage.getItem('theme') || 'default',
     }
   }
 
@@ -44,13 +44,13 @@ class Game extends React.Component {
       history: boards[index].history,
       height: boards[index].height,
       width: boards[index].width,
-      pegsNumber: boards[index].pegsNumber,
+      pegsNumber: boards[index].defaultPegsNumber,
       defaultPegsNumber: boards[index].defaultPegsNumber,
       gameState: null,
       stepNumber: 0,
     });
 
-    localStorage.setItem('board', boards[index].boardType);
+    localStorage.setItem('board', index);
   }
 
   toggleRulesModal() {
@@ -86,10 +86,10 @@ class Game extends React.Component {
     let pegsActive = [];
     const {width, height} = this.state;
 
-    for(let i=0; i<height; i++) {
-      for(let j=0; j<width; j++) {
-        if(pegs[i][j] === 3) {
-          pegsActive.push([i,j]);
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
+        if (pegs[i][j] === 3) {
+          pegsActive.push([i, j]);
         }
       }
     }
@@ -100,10 +100,10 @@ class Game extends React.Component {
     let holesActive = [];
     const {width, height} = this.state;
 
-    for(let i=0; i<height; i++) {
-      for(let j=0; j<width; j++) {
-        if(pegs[i][j] === 2) {
-          holesActive.push([i,j]);
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
+        if (pegs[i][j] === 2) {
+          holesActive.push([i, j]);
         }
       }
     }
@@ -114,13 +114,13 @@ class Game extends React.Component {
     let pegsToMove = [];
     const {width, height} = this.state;
 
-    for(let i=0; i<height; i++) {
-      for(let j=0; j<width; j++) {
-        if(pegs[i][j] === 1 && (
-          (i-2>=0 && pegs[i-1][j] === 1 && (pegs[i-2][j] === 0 || pegs[i-2][j] === 2)) ||
-          (i+2<=(height-1) && pegs[i+1][j] === 1 && (pegs[i+2][j] === 0 || pegs[i+2][j] === 2)) ||
-          (j-2>=0 && pegs[i][j-1] === 1 && (pegs[i][j-2] === 0 || pegs[i][j-2] === 2)) ||
-          (j+2<=(width-1) && pegs[i][j+1] === 1 && (pegs[i][j+2] === 0 || pegs[i][j+2] === 2))
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
+        if (pegs[i][j] === 1 && (
+          (i - 2 >= 0          && pegs[i-1][j] === 1 && (pegs[i-2][j] === 0 || pegs[i-2][j] === 2)) ||
+          (i + 2 <= (height-1) && pegs[i+1][j] === 1 && (pegs[i+2][j] === 0 || pegs[i+2][j] === 2)) ||
+          (j - 2 >= 0          && pegs[i][j-1] === 1 && (pegs[i][j-2] === 0 || pegs[i][j-2] === 2)) ||
+          (j + 2 <= (width-1)  && pegs[i][j+1] === 1 && (pegs[i][j+2] === 0 || pegs[i][j+2] === 2))
         )) {
           pegsToMove.push([i,j]);
         }
@@ -134,35 +134,19 @@ class Game extends React.Component {
     let holesToFill = [];
     const {width, height} = this.state;
 
-    if (i-2>=0 && pegs[i-1][j] === 1 && pegs[i-2][j] === 0) {
-      holesToFill.push([i-2,j]);
-    }
-    if (i+2<=(height-1) && pegs[i+1][j] === 1 && pegs[i+2][j] === 0) {
-      holesToFill.push([i+2,j]);
-    }
-    if (j-2>=0 && pegs[i][j-1] === 1 && pegs[i][j-2] === 0) {
-      holesToFill.push([i,j-2]);
-    }
-    if (j+2<=(width-1) && pegs[i][j+1] === 1 && pegs[i][j+2] === 0) {
-      holesToFill.push([i,j+2]);
-    }
+    if (i - 2 >= 0          && pegs[i-1][j] === 1 && pegs[i-2][j] === 0) { holesToFill.push([i-2,j]); }
+    if (i + 2 <= (height-1) && pegs[i+1][j] === 1 && pegs[i+2][j] === 0) { holesToFill.push([i+2,j]); }
+    if (j - 2 >= 0          && pegs[i][j-1] === 1 && pegs[i][j-2] === 0) { holesToFill.push([i,j-2]); }
+    if (j + 2 <= (width-1)  && pegs[i][j+1] === 1 && pegs[i][j+2] === 0) { holesToFill.push([i,j+2]); }
 
     return holesToFill;
   }
 
   deleteTheMiddlePeg(i,j,holesToFill,pegs) {
-    if(i > holesToFill[0][0]) {
-      pegs[i-1][j] = 0;
-    }
-    else if (i < holesToFill[0][0]) {
-      pegs[i+1][j] = 0;
-    }
-    else if(j > holesToFill[0][1]) {
-      pegs[i][j-1] = 0;
-    }
-    else {
-      pegs[i][j+1] = 0;
-    }
+    if      (i > holesToFill[0][0]) { pegs[i-1][j] = 0; }
+    else if (i < holesToFill[0][0]) { pegs[i+1][j] = 0; }
+    else if (j > holesToFill[0][1]) { pegs[i][j-1] = 0; }
+    else                            { pegs[i][j+1] = 0; }
 
     return pegs;
   }
@@ -177,8 +161,8 @@ class Game extends React.Component {
     const pegsActive = this.findPegsActive(pegs);
 
     // clickable peg -> activate
-    if(!pegsActive.length && isInArray(pegsToMove, [i,j])) {
-      for(let i=0; i<holesToFill.length; i++) {
+    if (!pegsActive.length && isInArray(pegsToMove, [i, j])) {
+      for (let i = 0; i < holesToFill.length; i++) {
         pegs[holesToFill[i][0]][holesToFill[i][1]] = 2;
       }
       pegs[i][j] = 3;
@@ -192,16 +176,16 @@ class Game extends React.Component {
     }
 
     // clickable hole -> jump to it
-    else if(pegs[i][j] === 2) {
+    else if (pegs[i][j] === 2) {
       let a, b;
-      for(let x = 0; x < this.state.height; x++) {
-        for(let y = 0; y < this.state.width; y++) {
-          if(pegs[x][y] === 3) {
+      for (let x = 0; x < this.state.height; x++) {
+        for (let y = 0; y < this.state.width; y++) {
+          if (pegs[x][y] === 3) {
             pegs[x][y] = 0;
             pegs[i][j] = 1;
             a = x;
             b = y;
-          } else if(pegs[x][y] === 2) {
+          } else if (pegs[x][y] === 2) {
             pegs[x][y] = 0;
           }
         }
@@ -216,19 +200,19 @@ class Game extends React.Component {
       }, () => {
         setTimeout(() => {
           this.setState({
-            gameState: calculateGameState(pegsNumber - 1, this.findPegsToMove(pegs), this.findPegsActive(pegs), pegs, boardType)
+            gameState: calculateGameState(pegsNumber - 1, this.findPegsToMove(pegs), this.findPegsActive(pegs), pegs, boardType, stepNumber + 1)
           });
         }, 500);
       });
     }
 
     // active peg -> deactivate
-    else if(isInArray(pegsActive, [i,j])) {
+    else if (isInArray(pegsActive, [i,j])) {
       this.jumpTo(stepNumber - 1);
     }
 
     // different clickable peg -> switch focus to this one
-    else if(pegsActive.length && isInArray(pegsToMove, [i,j])) {
+    else if (pegsActive.length && isInArray(pegsToMove, [i,j])) {
       this.setState({
         stepNumber: stepNumber-1,
         history: this.state.history.slice(0, stepNumber + 1),
@@ -245,7 +229,7 @@ class Game extends React.Component {
   }
 
   render() {
-    const {history, theme, stepNumber, pegsNumber, rulesModalOpen, boardsModalOpen, audio, gameState} = this.state;
+    const {history, theme, stepNumber, pegsNumber, rulesModalOpen, boardsModalOpen, audio, gameState, boardType} = this.state;
     const current = history[this.state.stepNumber];
     const pegs = current.pegs.slice();
     const pegsActive = this.findPegsActive(pegs);
@@ -276,6 +260,7 @@ class Game extends React.Component {
         <Score
           stepNumber={stepNumber}
           pegsNumber={pegsNumber}
+          boardType={boardType}
         />
 
         <ThemeSelect
@@ -315,22 +300,33 @@ function isInArray(array, item) {
   return false;
 }
 
-function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boardType) {
+function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boardType, stepNumber) {
+  let state = null;
+
   if (pegsToMove.length === 0 && pegsActive.length === 0) {
     if (pegsNumber === 1) {
-      if (boardType === "tutorial")                              { return 'full-win'; }
-      else if (boardType === "english"      && pegs[3][3] === 1) { return 'full-win'; }
-      else if (boardType === "european"     && pegs[4][3] === 1) { return 'full-win'; }
-      else if (boardType === "german"       && pegs[4][4] === 1) { return 'full-win'; }
-      else if (boardType === "asymmetrical" && pegs[3][4] === 1) { return 'full-win'; }
-      else if (boardType === "square"       && pegs[2][3] === 1) { return 'full-win'; }
-      else if (boardType === "diamond"      && pegs[4][4] === 1) { return 'full-win'; }
-      else { return 'part-win'; }
+      if (boardType === "tutorial" ||
+         (boardType === "english"      && pegs[3][3] === 1) ||
+         (boardType === "german"       && pegs[4][4] === 1) ||
+         (boardType === "asymmetrical" && pegs[3][4] === 1) ||
+         (boardType === "square"       && pegs[2][3] === 1) ||
+         (boardType === "diamond"      && pegs[4][4] === 1)
+      ) {
+        state = 'full-win';
+      } else {
+        state = 'part-win';
+      }
     } else {
-      return 'defeat';
+      state = 'defeat';
+    }
+
+    if(!localStorage.getItem('best-score-pegs-' + boardType) || localStorage.getItem('best-score-pegs-' + boardType) > pegsNumber) {
+      localStorage.setItem('best-score-pegs-' + boardType, pegsNumber);
+      localStorage.setItem('best-score-moves-' + boardType, Math.floor(stepNumber/2));
     }
   }
-  return null;
+
+  return state;
 }
 
 ReactDOM.render(

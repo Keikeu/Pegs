@@ -28,7 +28,6 @@ export default class Snow extends React.Component {
   }
 
   render() {
-
     return <Canvas angle={this.state.angle}/>
   }
 }

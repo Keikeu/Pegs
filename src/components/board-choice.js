@@ -7,15 +7,14 @@ import diamond from '../media/diamond.png';
 import german from '../media/german.png';
 import english from '../media/english.png';
 import square from '../media/square.png';
-import european from '../media/european.png';
 
 class BoardChoice extends React.Component {
   constructor() {
     super();
     this.state = {
       currentIndex: 0,
-      items: [tutorial, english, european, german, asymmetrical, square, diamond],
-      itemsNames: ['Tutorial', 'English', 'European', 'German', 'Asymmetrical', 'Square', 'Diamond'],
+      items: [tutorial, english, german, asymmetrical, square, diamond],
+      itemsNames: ['Tutorial', 'English', 'German', 'Asymmetrical', 'Square', 'Diamond'],
     };
   }
 
@@ -38,7 +37,12 @@ class BoardChoice extends React.Component {
         startIndex={currentIndex}
         onSlideChanged={this.onSlideChanged}
       >
-        { items.map((item, i) => <div key={i}> <h3>{itemsNames[i]}</h3> <img className="board-img" src={item} alt={itemsNames[i]}/> </div>) }
+        { items.map((item, i) => 
+          <div key={itemsNames[i]}> 
+            <h3>{itemsNames[i]}</h3> 
+            <img className="board-img" src={item} alt={itemsNames[i]}/> 
+          </div>) 
+        }
       </AliceCarousel>
     );
   }

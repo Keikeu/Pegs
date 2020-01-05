@@ -10,18 +10,15 @@ const Theme = ({ theme, audio, toggleAudio }) => (
       <div>
         {audio && (
           <>
-            <audio autoPlay loop>
-              <source src={christmas} type="audio/mpeg"/>
-              <embed src={christmas} autostart="true" loop={true} hidden={true}/>
-            </audio>
+            <audio autoPlay loop src={christmas} type="audio/mpeg" />
             <Button className="audio-btn" onClick={() => toggleAudio()}>
-            <i className="material-icons">volume_up</i>
+              <i className="material-icons">volume_up</i>
             </Button>
           </>
         )}
         {!audio && (
           <Button className="audio-btn" onClick={() => toggleAudio()}>
-          <i className="material-icons">volume_off</i>
+            <i className="material-icons">volume_off</i>
           </Button>
         )}
         <Snow></Snow>
@@ -41,18 +38,15 @@ const Theme = ({ theme, audio, toggleAudio }) => (
       <div>
       {audio && (
         <>
-          <audio autoPlay loop>
-            <source src={vaporwave} type="audio/mpeg"/>
-            <embed src={vaporwave} autostart="true" loop={true} hidden={true}/>
-          </audio>
+          <audio autoPlay loop src={vaporwave} type="audio/mpeg" />
           <Button className="audio-btn" onClick={() => toggleAudio()}>
-          <i className="material-icons">volume_up</i>
+            <i className="material-icons">volume_up</i>
           </Button>
         </>
       )}
       {!audio && (
         <Button className="audio-btn" onClick={() => toggleAudio()}>
-        <i className="material-icons">volume_off</i>
+          <i className="material-icons">volume_off</i>
         </Button>
       )}
       </div>
