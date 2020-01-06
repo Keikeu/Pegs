@@ -2,25 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/style.css';
 
-import Board from './components/board.js';
-import Theme from './components/theme.js';
-import Score from './components/score.js';
-import Navigation from './components/navigation.js';
-import ThemeSelect from './components/theme-select.js';
-import RulesModal from './components/rules-modal.js';
-import StateModal from './components/state-modal.js';
-import BoardsModal from './components/boards-modal.js';
+import Board from './components/Board.js';
+import Theme from './components/Theme.js';
+import Score from './components/Score.js';
+import Navigation from './components/Navigation.js';
+import ThemeSelect from './components/ThemeSelect.js';
+import RulesModal from './components/RulesModal.js';
+import StateModal from './components/StateModal.js';
+import BoardsModal from './components/BoardsModal.js';
 
-import { boards } from './boardsMap.js';
+import { boards } from './boards-map.js';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
 
-    const index = localStorage.getItem('board') || 0;
+    const index = parseInt(localStorage.getItem('board')) || 0;
 
     this.state = {
-      rulesModalOpen: localStorage.getItem('board') === '0' ? true : false,
+      rulesModalOpen: index === 0 ? true : false,
       boardsModalOpen: false,
       audio: false,
       boardType: boards[index].boardType,
@@ -116,10 +116,10 @@ class Game extends React.Component {
     for (let i = 0; i < height; i++) {
       for (let j = 0; j < width; j++) {
         if (pegs[i][j] === 1 && (
-          (i - 2 >= 0          && pegs[i-1][j] === 1 && (pegs[i-2][j] === 0 || pegs[i-2][j] === 2)) ||
-          (i + 2 <= (height-1) && pegs[i+1][j] === 1 && (pegs[i+2][j] === 0 || pegs[i+2][j] === 2)) ||
-          (j - 2 >= 0          && pegs[i][j-1] === 1 && (pegs[i][j-2] === 0 || pegs[i][j-2] === 2)) ||
-          (j + 2 <= (width-1)  && pegs[i][j+1] === 1 && (pegs[i][j+2] === 0 || pegs[i][j+2] === 2))
+          (i - 2 >= 0          && (pegs[i-1][j] === 1 || pegs[i-1][j] === 3) && (pegs[i-2][j] === 0 || pegs[i-2][j] === 2)) ||
+          (i + 2 <= (height-1) && (pegs[i+1][j] === 1 || pegs[i+1][j] === 3) && (pegs[i+2][j] === 0 || pegs[i+2][j] === 2)) ||
+          (j - 2 >= 0          && (pegs[i][j-1] === 1 || pegs[i][j-1] === 3) && (pegs[i][j-2] === 0 || pegs[i][j-2] === 2)) ||
+          (j + 2 <= (width-1)  && (pegs[i][j+1] === 1 || pegs[i][j+1] === 3) && (pegs[i][j+2] === 0 || pegs[i][j+2] === 2))
         )) {
           pegsToMove.push([i,j]);
         }
@@ -283,6 +283,7 @@ class Game extends React.Component {
 
         {boardsModalOpen &&
           <BoardsModal
+            initialIndex={parseInt(localStorage.getItem('board'))}
             onClick={(index) => this.changeBoard(index)}
             onClose={() => this.toggleBoardsModal()}
           />
@@ -321,7 +322,7 @@ function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boardType,
       state = 'defeat';
     }
 
-    if(!localStorage.getItem('best-score-pegs-' + boardType) || localStorage.getItem('best-score-pegs-' + boardType) > pegsNumber) {
+    if(!parseInt(localStorage.getItem('best-score-pegs-' + boardType)) || parseInt(localStorage.getItem('best-score-pegs-' + boardType)) > pegsNumber) {
       localStorage.setItem('best-score-pegs-' + boardType, pegsNumber);
       localStorage.setItem('best-score-moves-' + boardType, Math.floor(stepNumber/2));
     }

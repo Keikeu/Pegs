@@ -1,5 +1,5 @@
 import React from 'react';
-import Peg from './peg.js';
+import Peg from './Peg.js';
 
 class Board extends React.Component {
   renderPeg(i) {
