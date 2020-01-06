@@ -8,7 +8,7 @@ const ThemeSelect = ({ changeTheme, theme }) => (
     <Select onChange={changeTheme} value={theme} className="select">
       <MenuItem value="default">Default</MenuItem>
       <MenuItem value="christmas">Christmas</MenuItem>
-      <MenuItem value="vaporwave">Vaporwave</MenuItem>
+      <MenuItem value="neon">Neon</MenuItem>
     </Select>
   </div>
 );

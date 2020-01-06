@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @import url('./style-christmas.css');
-@import url('./style-vaporwave.css');
+@import url('./style-neon.css');
 @import url('../../node_modules/react-alice-carousel/lib/alice-carousel.css');
 
 body,
@@ -167,7 +167,7 @@ html,
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 2;
 }
