@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "412c2082d9daee974ed8",
-    "url": "/Pegs/static/css/main.4ba3c6fd.chunk.css"
+    "revision": "d04e6b5e462d63e45006",
+    "url": "/Pegs/static/css/main.5100b957.chunk.css"
   },
   {
-    "revision": "412c2082d9daee974ed8",
-    "url": "/Pegs/static/js/main.412c2082.chunk.js"
+    "revision": "d04e6b5e462d63e45006",
+    "url": "/Pegs/static/js/main.d04e6b5e.chunk.js"
   },
   {
     "revision": "95b0534038ad643b46f5",
@@ -25,7 +25,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "2052a4678c2276bf6b698d0c72cec5cf",
-    "url": "/Pegs/static/media/vaporwave.2052a467.mp3"
+    "url": "/Pegs/static/media/neon.2052a467.mp3"
   },
   {
     "revision": "9facfc6b207f01f9cf48e134bdcc47f3",
@@ -56,11 +56,11 @@ self.__precacheManifest = [
     "url": "/Pegs/static/media/square.a55ab0f9.png"
   },
   {
-    "revision": "8792ff566187556d5fcebaaba1022066",
-    "url": "/Pegs/static/media/vaporwave.8792ff56.jpg"
+    "revision": "42968f0c2d20235f2b1232d8a42ab3be",
+    "url": "/Pegs/static/media/neon.42968f0c.jpg"
   },
   {
-    "revision": "fcc3ac110f83f1d8865bd86f967679af",
+    "revision": "b306c65613dc33fe93ba0e30ddf1f66b",
     "url": "/Pegs/index.html"
   }
 ];
