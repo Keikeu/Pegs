@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e98ed8dfaf280890e746",
-    "url": "/Pegs/static/css/main.46742d82.chunk.css"
+    "revision": "412c2082d9daee974ed8",
+    "url": "/Pegs/static/css/main.4ba3c6fd.chunk.css"
   },
   {
-    "revision": "e98ed8dfaf280890e746",
-    "url": "/Pegs/static/js/main.e98ed8df.chunk.js"
+    "revision": "412c2082d9daee974ed8",
+    "url": "/Pegs/static/js/main.412c2082.chunk.js"
   },
   {
     "revision": "95b0534038ad643b46f5",
@@ -56,11 +56,11 @@ self.__precacheManifest = [
     "url": "/Pegs/static/media/square.a55ab0f9.png"
   },
   {
-    "revision": "379f756f99c77391b40b8e80efbfd737",
-    "url": "/Pegs/static/media/vaporwave.379f756f.jpg"
+    "revision": "8792ff566187556d5fcebaaba1022066",
+    "url": "/Pegs/static/media/vaporwave.8792ff56.jpg"
   },
   {
-    "revision": "88f35f9dcc332b11e3c754481b7be89c",
+    "revision": "fcc3ac110f83f1d8865bd86f967679af",
     "url": "/Pegs/index.html"
   }
 ];
