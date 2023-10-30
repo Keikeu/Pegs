@@ -1,8 +1,8 @@
-import React from 'react';
-import christmas from '../media/christmas.mp3';
-import neon from '../media/neon.mp3';
-import Button from '@material-ui/core/Button';
-import Snow from '../snow-animation.js';
+import React from "react";
+import christmas from "../media/christmas.mp3";
+import neon from "../media/neon.mp3";
+import Button from "@material-ui/core/Button";
+import Snow from "../snow-animation.js";
 
 const Theme = ({ theme, audio, toggleAudio }) => (
   <div>
@@ -10,7 +10,7 @@ const Theme = ({ theme, audio, toggleAudio }) => (
       <div>
         {audio && (
           <>
-            <audio autoPlay loop src={christmas} type="audio/mpeg"/>
+            <audio autoPlay loop src={christmas} type="audio/mpeg" />
             <Button className="audio-btn" onClick={() => toggleAudio()}>
               <i className="material-icons">volume_up</i>
             </Button>
@@ -29,29 +29,28 @@ const Theme = ({ theme, audio, toggleAudio }) => (
               <stop offset="100%" stopColor="#8fa5b3" />
             </linearGradient>
           </defs>
-          <path d="M -40 100 Q 10 -70 60 100 " fill="url(#gradient)"/>
-          <path d="M 15 100 Q 80 -100 120 100 " fill="url(#gradient)"/>
+          <path d="M -40 100 Q 10 -70 60 100 " fill="url(#gradient)" />
+          <path d="M 15 100 Q 80 -100 120 100 " fill="url(#gradient)" />
         </svg>
       </div>
     )}
     {theme === "neon" && (
       <div>
-      {audio && (
-        <>
-          <audio autoPlay loop src={neon} type="audio/mpeg" />
+        {audio && (
+          <>
+            <audio autoPlay loop src={neon} type="audio/mpeg" />
+            <Button className="audio-btn" onClick={() => toggleAudio()}>
+              <i className="material-icons">volume_up</i>
+            </Button>
+          </>
+        )}
+        {!audio && (
           <Button className="audio-btn" onClick={() => toggleAudio()}>
-            <i className="material-icons">volume_up</i>
+            <i className="material-icons">volume_off</i>
           </Button>
-        </>
-      )}
-      {!audio && (
-        <Button className="audio-btn" onClick={() => toggleAudio()}>
-          <i className="material-icons">volume_off</i>
-        </Button>
-      )}
+        )}
       </div>
-      )
-    }
+    )}
   </div>
 );
 

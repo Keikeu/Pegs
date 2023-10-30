@@ -1,30 +1,24 @@
-import React from 'react';
-import Peg from './Peg.js';
+import React from "react";
+import Peg from "./Peg.js";
 
-class Board extends React.Component {
-  renderPeg(i) {
+const Board = ({ pegs, width, height, onClick, boardType }) => {
+  function renderPeg(i) {
     return (
       <Peg
         key={i}
-        value={this.props.pegs[Math.floor(i/this.props.width)][i%this.props.height]}
-        onClick={() => this.props.onClick(Math.floor(i/this.props.width), i%this.props.height)}
+        value={pegs[Math.floor(i / width)][i % height]}
+        onClick={() => onClick(Math.floor(i / width), i % height)}
       />
     );
   }
 
-  render() {
-    const board = [];
+  const board = [];
 
-    for (let i = 0; i < this.props.width * this.props.height; i++) {
-      board.push(this.renderPeg(i))
-    }
-
-    return (
-      <div className={"board " + this.props.boardType}>
-        {board}
-      </div>
-    )
+  for (let i = 0; i < width * height; i++) {
+    board.push(renderPeg(i));
   }
-}
+
+  return <div className={"board " + boardType}>{board}</div>;
+};
 
 export default Board;
