@@ -2,6 +2,7 @@ import React from "react";
 import T from "prop-types";
 import Button from "@material-ui/core/Button";
 import { GAME_STATES } from "../constants";
+import Icon from "./Icon";
 
 const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
   if (value === null) {
@@ -12,9 +13,9 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         <div className="dialog-container" onClick={onClose}></div>
         <div className="dialog dialog--defeat">
           <Button className="close-btn" onClick={onClose}>
-            <i className="material-icons">close</i>
+            <Icon name="close" />
           </Button>
-          <i className="material-icons">sentiment_very_dissatisfied</i>
+          <Icon name="sentiment_very_dissatisfied" />
           <h2>You lost</h2>
           <p>Moves: {Math.floor(stepNumber / 2)}</p>
           <p>Pegs left: {pegsNumber}</p>
@@ -36,9 +37,9 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         <div className="dialog-container" onClick={onClose}></div>
         <div className="dialog dialog--win">
           <Button className="close-btn" onClick={onClose}>
-            <i className="material-icons">close</i>
+            <Icon name="close" />
           </Button>
-          <i className="material-icons">sentiment_satisfied_alt</i>
+          <Icon name="sentiment_satisfied_alt" />
           <h2>Almost there!</h2>
           <p>Moves: {Math.floor(stepNumber / 2)}</p>
           <p>Pegs left: {pegsNumber}</p>
@@ -61,9 +62,9 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         <div className="dialog-container" onClick={onClose}></div>
         <div className="dialog dialog--win">
           <Button className="close-btn" onClick={onClose}>
-            <i className="material-icons">close</i>
+            <Icon name="close" />
           </Button>
-          <i className="material-icons">sentiment_very_satisfied</i>
+          <Icon name="sentiment_very_satisfied" />
           <h2>Wow! You did it!</h2>
           <p>Moves: {Math.floor(stepNumber / 2)}</p>
           <p>Pegs left: {pegsNumber}</p>
@@ -85,9 +86,9 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         <div className="dialog-container" onClick={onClose}></div>
         <div className="dialog dialog--win">
           <Button className="close-btn" onClick={onClose}>
-            <i className="material-icons">close</i>
+            <Icon name="close" />
           </Button>
-          <i className="material-icons">sentiment_very_satisfied</i>
+          <Icon name="sentiment_very_satisfied" />
           <h2>Nice!</h2>
           <p>Moves: {Math.floor(stepNumber / 2)}</p>
           <p>Pegs left: {pegsNumber}</p>

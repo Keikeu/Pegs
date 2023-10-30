@@ -1,23 +1,24 @@
 import React from "react";
 import T from "prop-types";
 import Button from "@material-ui/core/Button";
+import Icon from "./Icon";
 
 const Navigation = ({ jumpTo, toggleBoardsModal, toggleRulesModal, pegsActive, stepNumber }) => (
   <div className="options">
     <Button className="options__btn" onClick={() => jumpTo(pegsActive.length === 0 ? stepNumber - 2 : stepNumber - 1)}>
-      <i className="material-icons">keyboard_backspace</i>
+      <Icon name="keyboard_backspace" />
       Undo
     </Button>
     <Button className="options__btn" onClick={() => jumpTo(0)}>
-      <i className="material-icons">replay</i>
+      <Icon name="replay" />
       Restart
     </Button>
     <Button className="options__btn" onClick={() => toggleBoardsModal()}>
-      <i className="material-icons">image_aspect_ratio</i>
+      <Icon name="image_aspect_ratio" />
       Other boards
     </Button>
     <Button className="options__btn" onClick={() => toggleRulesModal()}>
-      <i className="material-icons">help_outline</i>
+      <Icon name="help_outline" />
       How to play
     </Button>
   </div>

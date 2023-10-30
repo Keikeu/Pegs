@@ -5,6 +5,7 @@ import neon from "../media/neon.mp3";
 import Button from "@material-ui/core/Button";
 import Snow from "../snow-animation.js";
 import { THEMES } from "../constants";
+import Icon from "./Icon";
 
 const Theme = ({ theme, audio, toggleAudio }) => (
   <div>
@@ -14,13 +15,13 @@ const Theme = ({ theme, audio, toggleAudio }) => (
           <>
             <audio autoPlay loop src={christmas} type="audio/mpeg" />
             <Button className="audio-btn" onClick={() => toggleAudio()}>
-              <i className="material-icons">volume_up</i>
+              <Icon name="volume_up" />
             </Button>
           </>
         )}
         {!audio && (
           <Button className="audio-btn" onClick={() => toggleAudio()}>
-            <i className="material-icons">volume_off</i>
+            <Icon name="volume_off" />
           </Button>
         )}
         <Snow></Snow>
@@ -42,13 +43,13 @@ const Theme = ({ theme, audio, toggleAudio }) => (
           <>
             <audio autoPlay loop src={neon} type="audio/mpeg" />
             <Button className="audio-btn" onClick={() => toggleAudio()}>
-              <i className="material-icons">volume_up</i>
+              <Icon name="volume_up" />
             </Button>
           </>
         )}
         {!audio && (
           <Button className="audio-btn" onClick={() => toggleAudio()}>
-            <i className="material-icons">volume_off</i>
+            <Icon name="volume_off" />
           </Button>
         )}
       </div>

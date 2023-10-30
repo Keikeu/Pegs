@@ -8,6 +8,7 @@ import diamond from "../media/diamond.png";
 import german from "../media/german.png";
 import english from "../media/english.png";
 import square from "../media/square.png";
+import Icon from "./Icon";
 
 const items = [tutorial, english, german, asymmetrical, square, diamond];
 const itemsNames = ["Tutorial", "English", "German", "Asymmetrical", "Square", "Diamond"];
@@ -46,13 +47,13 @@ const BoardsModal = ({ initialIndex, onClose, onClick }) => {
       <div className="dialog">
         <h2>Play on a different board</h2>
         <Button className="close-btn" onClick={onClose}>
-          <i className="material-icons">close</i>
+          <Icon name="close" />
         </Button>
         <Button className="carousel-btn" onClick={() => slidePrev()}>
-          <i className="material-icons">chevron_left</i>
+          <Icon name="chevron_left" />
         </Button>
         <Button className="carousel-btn" onClick={() => slideNext()}>
-          <i className="material-icons">chevron_right</i>
+          <Icon name="chevron_right" />
         </Button>
         {renderGallery()}
         <Button className="play-btn" variant="contained" onClick={() => onClick(currentIndex)}>
