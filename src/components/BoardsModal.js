@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import T from "prop-types";
 import Button from "@material-ui/core/Button";
 import AliceCarousel from "react-alice-carousel";
 import tutorial from "../media/tutorial.png";
@@ -60,6 +61,12 @@ const BoardsModal = ({ initialIndex, onClose, onClick }) => {
       </div>
     </div>
   );
+};
+
+BoardsModal.propTypes = {
+  initialIndex: T.number,
+  onClose: T.func,
+  onClick: T.func,
 };
 
 export default BoardsModal;

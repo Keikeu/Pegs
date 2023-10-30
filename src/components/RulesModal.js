@@ -1,4 +1,5 @@
 import React from "react";
+import T from "prop-types";
 import Button from "@material-ui/core/Button";
 import rules from "../media/rules.gif";
 
@@ -16,5 +17,9 @@ const RulesModal = ({ onClose }) => (
     </div>
   </div>
 );
+
+RulesModal.propTypes = {
+  onClose: T.func,
+};
 
 export default RulesModal;

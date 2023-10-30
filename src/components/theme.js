@@ -1,4 +1,5 @@
 import React from "react";
+import T from "prop-types";
 import christmas from "../media/christmas.mp3";
 import neon from "../media/neon.mp3";
 import Button from "@material-ui/core/Button";
@@ -53,5 +54,11 @@ const Theme = ({ theme, audio, toggleAudio }) => (
     )}
   </div>
 );
+
+Theme.propTypes = {
+  theme: T.string,
+  audio: T.bool,
+  toggleAudio: T.func,
+};
 
 export default Theme;

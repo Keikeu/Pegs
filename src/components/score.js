@@ -1,4 +1,5 @@
 import React from "react";
+import T from "prop-types";
 
 const Score = ({ stepNumber, pegsNumber, boardType }) => {
   let bsm = localStorage.getItem("best-score-moves-" + boardType);
@@ -17,6 +18,12 @@ const Score = ({ stepNumber, pegsNumber, boardType }) => {
       </div>
     </div>
   );
+};
+
+Score.propTypes = {
+  stepNumber: T.number,
+  pegsNumber: T.number,
+  boardType: T.string,
 };
 
 export default Score;

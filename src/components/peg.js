@@ -1,4 +1,5 @@
 import React from "react";
+import T from "prop-types";
 
 const pegsMap = {
   "-1": "",
@@ -9,5 +10,10 @@ const pegsMap = {
 };
 
 const Peg = ({ value, onClick }) => <div className={pegsMap[value]} onClick={onClick}></div>;
+
+Peg.propTypes = {
+  onClick: T.func,
+  value: T.number,
+};
 
 export default Peg;

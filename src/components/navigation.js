@@ -1,4 +1,5 @@
 import React from "react";
+import T from "prop-types";
 import Button from "@material-ui/core/Button";
 
 const Navigation = ({ jumpTo, toggleBoardsModal, toggleRulesModal, pegsActive, stepNumber }) => (
@@ -21,5 +22,13 @@ const Navigation = ({ jumpTo, toggleBoardsModal, toggleRulesModal, pegsActive, s
     </Button>
   </div>
 );
+
+Navigation.propTypes = {
+  jumpTo: T.func,
+  toggleBoardsModal: T.func,
+  toggleRulesModal: T.func,
+  pegsActive: T.array,
+  stepNumber: T.number,
+};
 
 export default Navigation;

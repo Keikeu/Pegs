@@ -1,4 +1,5 @@
 import React from "react";
+import T from "prop-types";
 import Peg from "./Peg.js";
 
 const Board = ({ pegs, width, height, onClick, boardType }) => {
@@ -19,6 +20,14 @@ const Board = ({ pegs, width, height, onClick, boardType }) => {
   }
 
   return <div className={"board " + boardType}>{board}</div>;
+};
+
+Board.propTypes = {
+  pegs: T.array,
+  width: T.number,
+  height: T.number,
+  onClick: T.func,
+  boardType: T.string,
 };
 
 export default Board;

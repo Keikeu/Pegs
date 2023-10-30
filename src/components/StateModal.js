@@ -1,4 +1,5 @@
 import React from "react";
+import T from "prop-types";
 import Button from "@material-ui/core/Button";
 import { GAME_STATES } from "../constants";
 
@@ -103,6 +104,14 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
       </div>
     );
   }
+};
+
+StateModal.propTypes = {
+  value: T.string,
+  stepNumber: T.number,
+  pegsNumber: T.number,
+  onClose: T.func,
+  onClick: T.func,
 };
 
 export default StateModal;
