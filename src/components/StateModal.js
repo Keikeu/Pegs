@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import { GAME_STATES } from "../constants";
 
 const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
   if (value === null) {
     return null;
-  } else if (value === "defeat") {
+  } else if (value === GAME_STATES.DEFEAT) {
     return (
       <div>
         <div className="dialog-container" onClick={onClose}></div>
@@ -28,7 +29,7 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         </div>
       </div>
     );
-  } else if (value === "part-win") {
+  } else if (value === GAME_STATES.PART_WIN) {
     return (
       <div>
         <div className="dialog-container" onClick={onClose}></div>
@@ -53,7 +54,7 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         </div>
       </div>
     );
-  } else if (value === "full-win") {
+  } else if (value === GAME_STATES.FULL_WIN) {
     return (
       <div>
         <div className="dialog-container" onClick={onClose}></div>
@@ -77,7 +78,7 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         </div>
       </div>
     );
-  } else if (value === "tutorial_win") {
+  } else if (value === GAME_STATES.TUTORIAL_WIN) {
     return (
       <div>
         <div className="dialog-container" onClick={onClose}></div>

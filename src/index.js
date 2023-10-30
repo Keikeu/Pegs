@@ -12,13 +12,15 @@ import StateModal from "./components/StateModal.js";
 import BoardsModal from "./components/BoardsModal.js";
 
 import { boards } from "./boards-map.js";
+import { BOARD_TYPES, GAME_STATES } from "./constants";
 
-const Game = ({}) => {
+const Game = () => {
   const index = parseInt(localStorage.getItem("board")) || 0;
 
   const [rulesModalOpen, setRulesModalOpen] = useState(index === 0 ? true : false);
   const [boardsModalOpen, setBoardsModalOpen] = useState(false);
   const [audio, setAudio] = useState(false);
+
   const [boardType, setBoardType] = useState(boards[index].boardType);
   const [history, setHistory] = useState(boards[index].history);
   const [height, setHeight] = useState(boards[index].height);
@@ -30,7 +32,6 @@ const Game = ({}) => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "default");
 
   function changeBoard(index) {
-    setRulesModalOpen(false);
     setRulesModalOpen(false);
     setBoardsModalOpen(false);
     setBoardType(boards[index].boardType);
@@ -286,20 +287,21 @@ function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boardType,
 
   if (pegsToMove.length === 0 && pegsActive.length === 0) {
     if (pegsNumber === 1) {
-      if (
-        boardType === "tutorial" ||
-        (boardType === "english" && pegs[3][3] === 1) ||
-        (boardType === "german" && pegs[4][4] === 1) ||
-        (boardType === "asymmetrical" && pegs[3][4] === 1) ||
-        (boardType === "square" && pegs[2][3] === 1) ||
-        (boardType === "diamond" && pegs[4][4] === 1)
+      if (boardType === BOARD_TYPES.TUTORIAL) {
+        state = GAME_STATES.TUTORIAL_WIN;
+      } else if (
+        (boardType === BOARD_TYPES.ENGLISH && pegs[3][3] === 1) ||
+        (boardType === BOARD_TYPES.GERMAN && pegs[4][4] === 1) ||
+        (boardType === BOARD_TYPES.ASYMMETRICAL && pegs[3][4] === 1) ||
+        (boardType === BOARD_TYPES.SQUARE && pegs[2][3] === 1) ||
+        (boardType === BOARD_TYPES.DIAMOND && pegs[4][4] === 1)
       ) {
-        state = "full-win";
+        state = GAME_STATES.FULL_WIN;
       } else {
-        state = "part-win";
+        state = GAME_STATES.PART_WIN;
       }
     } else {
-      state = "defeat";
+      state = GAME_STATES.DEFEAT;
     }
 
     if (
