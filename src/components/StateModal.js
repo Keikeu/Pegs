@@ -77,6 +77,30 @@ const StateModal = ({ value, stepNumber, pegsNumber, onClose, onClick }) => {
         </div>
       </div>
     );
+  } else if (value === "tutorial_win") {
+    return (
+      <div>
+        <div className="dialog-container" onClick={onClose}></div>
+        <div className="dialog dialog--win">
+          <Button className="close-btn" onClick={onClose}>
+            <i className="material-icons">close</i>
+          </Button>
+          <i className="material-icons">sentiment_very_satisfied</i>
+          <h2>Nice!</h2>
+          <p>Moves: {Math.floor(stepNumber / 2)}</p>
+          <p>Pegs left: {pegsNumber}</p>
+          <p>
+            <br />
+            You are ready for the real game now.
+            <br />
+            <br />
+          </p>
+          <Button variant="outlined" onClick={onClick}>
+            Play
+          </Button>
+        </div>
+      </div>
+    );
   }
 };
 
