@@ -4,10 +4,11 @@ import christmas from "../media/christmas.mp3";
 import neon from "../media/neon.mp3";
 import Button from "@material-ui/core/Button";
 import Snow from "../snow-animation.js";
+import { THEMES } from "../constants";
 
 const Theme = ({ theme, audio, toggleAudio }) => (
   <div>
-    {theme === "christmas" && (
+    {theme === THEMES.CHRISTMAS && (
       <div>
         {audio && (
           <>
@@ -35,7 +36,7 @@ const Theme = ({ theme, audio, toggleAudio }) => (
         </svg>
       </div>
     )}
-    {theme === "neon" && (
+    {theme === THEMES.NEON && (
       <div>
         {audio && (
           <>

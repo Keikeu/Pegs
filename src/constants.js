@@ -13,3 +13,9 @@ export const GAME_STATES = {
   TUTORIAL_WIN: "tutorial-win",
   DEFEAT: "defeat",
 };
+
+export const THEMES = {
+  DEFAULT: "default",
+  NEON: "neon",
+  CHRISTMAS: "christmas",
+};
