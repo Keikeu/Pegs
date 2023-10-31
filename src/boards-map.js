@@ -3,7 +3,7 @@ import { BOARD_TYPES } from "./constants";
 export const boards = [
   {
     boardType: BOARD_TYPES.TUTORIAL,
-    height: 4,
+    height: 3,
     width: 4,
     defaultPegsNumber: 5,
     history: [
@@ -12,7 +12,6 @@ export const boards = [
           [0, 0, 1, 1],
           [0, 1, 1, -1],
           [1, -1, -1, -1],
-          [-1, -1, -1, -1],
         ],
       },
     ],
