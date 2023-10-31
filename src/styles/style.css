@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&amp;subset=latin-ext');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-@import url('./style-christmas.css');
-@import url('./style-neon.css');
-@import url('../../node_modules/react-alice-carousel/lib/alice-carousel.css');
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&amp;subset=latin-ext");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("./style-christmas.css");
+@import url("./style-neon.css");
 
 body,
 html,
@@ -17,7 +16,7 @@ html,
   box-sizing: border-box;
   background-color: #accef2;
   background-attachment: fixed;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   overflow: hidden;
   color: #444444;
@@ -175,7 +174,7 @@ html,
 .dialog {
   position: absolute;
   top: 50%;
-  left: 50%;  
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
   max-width: 600px;
@@ -250,9 +249,30 @@ html,
   font-size: 40px;
 }
 
-.dialog .board-img {
-  max-width: 400px;
-  width: 90%;
+.board-gallery {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.board-gallery .gallery-item {
+  border-radius: 8px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.board-gallery .gallery-item:hover {
+  background-color: #f4f4f6;
+}
+
+.board-gallery .gallery-item--current {
+  background-color: #f8f8fa;
+  border: 1px solid #cccccc;
+}
+
+.board-gallery .board-img {
+  width: 160px;
   height: auto;
 }
 
@@ -294,12 +314,12 @@ html,
     bottom: 0;
     right: 0;
   }
-  
+
   .board.tutorial {
     max-height: 200px;
     max-width: 200px;
   }
-  
+
   .score {
     bottom: 50px;
     left: 20px;
@@ -311,9 +331,11 @@ html,
     left: 20px;
     font-size: 14px;
   }
-    
+
   .dialog {
     width: 90%;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .dialog h2 {
@@ -347,5 +369,9 @@ html,
 
   .container .select {
     font-size: 14px;
+  }
+
+  .board-gallery .board-img {
+    width: 72px;
   }
 }
