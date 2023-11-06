@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import T from "prop-types";
 
 const Canvas = ({ angle }) => {
   const canvasRef = React.createRef();
@@ -6,15 +7,18 @@ const Canvas = ({ angle }) => {
   const height = window.innerHeight || 900;
   const count = Math.floor((width + height) / 10);
 
-  const flakes = [];
-  for (let i = 0; i < count; i++) {
-    flakes.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: 1 + Math.random() * (5 - 1 + 1),
-      o: 0.2 + Math.random() * (0.6 - 0.2 + 1),
-    });
-  }
+  const flakes = useMemo(() => {
+    const tempFlakes = [];
+    for (let i = 0; i < count; i++) {
+      tempFlakes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: 1 + Math.random() * (3 - 1 + 1),
+        o: 0.2 + Math.random() * (0.6 - 0.2 + 1),
+      });
+    }
+    return tempFlakes;
+  }, [width, height, count]);
 
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
@@ -42,6 +46,10 @@ const Canvas = ({ angle }) => {
   }, [angle, canvasRef, flakes, height, width]);
 
   return <canvas className="snow-container" width={width} height={height} ref={canvasRef} />;
+};
+
+Canvas.propTypes = {
+  angle: T.number,
 };
 
 const Snow = () => {
