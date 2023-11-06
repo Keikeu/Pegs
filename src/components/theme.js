@@ -2,29 +2,28 @@ import React from "react";
 import T from "prop-types";
 import christmas from "../media/christmas.mp3";
 import neon from "../media/neon.mp3";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import Snow from "../snow-animation.js";
 import { THEMES } from "../constants";
 import Icon from "./Icon";
 
-const Theme = ({ theme, audio, toggleAudio }) => (
+const Theme = ({ theme, isAudioOn, toggleAudio }) => (
   <div>
     {theme === THEMES.CHRISTMAS && (
       <div>
-        {audio && (
+        {isAudioOn ? (
           <>
             <audio autoPlay loop src={christmas} type="audio/mpeg" />
-            <Button className="audio-btn" onClick={() => toggleAudio()}>
+            <Button className="audio-btn" onClick={toggleAudio}>
               <Icon name="volume_up" />
             </Button>
           </>
-        )}
-        {!audio && (
-          <Button className="audio-btn" onClick={() => toggleAudio()}>
+        ) : (
+          <Button className="audio-btn" onClick={toggleAudio}>
             <Icon name="volume_off" />
           </Button>
         )}
-        <Snow></Snow>
+        <Snow />
         <svg className="ground" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -39,16 +38,15 @@ const Theme = ({ theme, audio, toggleAudio }) => (
     )}
     {theme === THEMES.NEON && (
       <div>
-        {audio && (
+        {isAudioOn ? (
           <>
             <audio autoPlay loop src={neon} type="audio/mpeg" />
-            <Button className="audio-btn" onClick={() => toggleAudio()}>
+            <Button className="audio-btn" onClick={toggleAudio}>
               <Icon name="volume_up" />
             </Button>
           </>
-        )}
-        {!audio && (
-          <Button className="audio-btn" onClick={() => toggleAudio()}>
+        ) : (
+          <Button className="audio-btn" onClick={toggleAudio}>
             <Icon name="volume_off" />
           </Button>
         )}
@@ -59,7 +57,7 @@ const Theme = ({ theme, audio, toggleAudio }) => (
 
 Theme.propTypes = {
   theme: T.string,
-  audio: T.bool,
+  isAudioOn: T.bool,
   toggleAudio: T.func,
 };
 

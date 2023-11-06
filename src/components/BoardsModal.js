@@ -12,13 +12,13 @@ import Icon from "./Icon";
 const boardImages = [tutorial, english, german, asymmetrical, square, diamond];
 const boardNames = ["Tutorial", "English", "German", "Asymmetrical", "Square", "Diamond"];
 
-const BoardsModal = ({ initialIndex, onClose, onClick }) => {
+const BoardsModal = ({ initialIndex, closeModal, changeBoard }) => {
   return (
     <div>
-      <div className="dialog-container" onClick={onClose}></div>
+      <div className="dialog-container" onClick={closeModal}></div>
       <div className="dialog">
         <h2>Play on a different board</h2>
-        <Button className="close-btn" onClick={onClose}>
+        <Button className="close-btn" onClick={closeModal}>
           <Icon name="close" />
         </Button>
         <div className="board-gallery">
@@ -26,7 +26,7 @@ const BoardsModal = ({ initialIndex, onClose, onClick }) => {
             <div
               key={boardNames[i]}
               className={`gallery-item${initialIndex === i ? " gallery-item--current" : ""}`}
-              onClick={() => onClick(i)}
+              onClick={() => changeBoard(i)}
             >
               <h3>{boardNames[i]}</h3>
               <img className="board-img" src={item} alt={boardNames[i]} />
@@ -40,8 +40,8 @@ const BoardsModal = ({ initialIndex, onClose, onClick }) => {
 
 BoardsModal.propTypes = {
   initialIndex: T.number,
-  onClose: T.func,
-  onClick: T.func,
+  closeModal: T.func,
+  changeBoard: T.func,
 };
 
 export default BoardsModal;

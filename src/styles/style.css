@@ -183,7 +183,7 @@ html,
   background-color: #ffffff;
   padding: 30px 40px 40px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 16px;
   color: #444444;
   z-index: 3;
 }
@@ -231,29 +231,12 @@ html,
   margin: 0;
 }
 
-.dialog .carousel-btn {
-  position: absolute;
-  top: 49%;
-  z-index: 4;
-}
-
-.dialog .carousel-btn:nth-of-type(2) {
-  left: 0;
-}
-
-.dialog .carousel-btn:nth-of-type(3) {
-  right: 0;
-}
-
-.dialog .carousel-btn i {
-  font-size: 40px;
-}
-
 .board-gallery {
-  margin-top: 32px;
+  margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+  height: 640px;
 }
 
 .board-gallery .gallery-item {

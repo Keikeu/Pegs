@@ -1,23 +1,26 @@
 import React from "react";
 import T from "prop-types";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import Icon from "./Icon";
 
-const Navigation = ({ jumpTo, toggleBoardsModal, toggleRulesModal, pegsActive, stepNumber }) => (
+const Navigation = ({ jumpToPointInHistory, toggleBoardsModal, toggleRulesModal, activePegs, stepNumber }) => (
   <div className="options">
-    <Button className="options__btn" onClick={() => jumpTo(pegsActive.length === 0 ? stepNumber - 2 : stepNumber - 1)}>
+    <Button
+      className="options__btn"
+      onClick={() => jumpToPointInHistory(activePegs.length === 0 ? stepNumber - 2 : stepNumber - 1)}
+    >
       <Icon name="keyboard_backspace" />
       Undo
     </Button>
-    <Button className="options__btn" onClick={() => jumpTo(0)}>
+    <Button className="options__btn" onClick={() => jumpToPointInHistory(0)}>
       <Icon name="replay" />
       Restart
     </Button>
-    <Button className="options__btn" onClick={() => toggleBoardsModal()}>
+    <Button className="options__btn" onClick={toggleBoardsModal}>
       <Icon name="image_aspect_ratio" />
       Other boards
     </Button>
-    <Button className="options__btn" onClick={() => toggleRulesModal()}>
+    <Button className="options__btn" onClick={toggleRulesModal}>
       <Icon name="help_outline" />
       How to play
     </Button>
@@ -25,10 +28,10 @@ const Navigation = ({ jumpTo, toggleBoardsModal, toggleRulesModal, pegsActive, s
 );
 
 Navigation.propTypes = {
-  jumpTo: T.func,
+  jumpToPointInHistory: T.func,
   toggleBoardsModal: T.func,
   toggleRulesModal: T.func,
-  pegsActive: T.array,
+  activePegs: T.array,
   stepNumber: T.number,
 };
 

@@ -4,12 +4,12 @@ import Button from "@mui/material/Button";
 import rules from "../media/rules.gif";
 import Icon from "./Icon";
 
-const RulesModal = ({ onClose }) => (
+const RulesModal = ({ closeModal }) => (
   <div>
-    <div className="dialog-container" onClick={onClose}></div>
+    <div className="dialog-container" onClick={closeModal}></div>
     <div className="dialog">
       <h2>How to play</h2>
-      <Button className="close-btn" onClick={onClose}>
+      <Button className="close-btn" onClick={closeModal}>
         <Icon name="close" />
       </Button>
       <p>Remove as many pegs as you can.</p>
@@ -20,7 +20,7 @@ const RulesModal = ({ onClose }) => (
 );
 
 RulesModal.propTypes = {
-  onClose: T.func,
+  closeModal: T.func,
 };
 
 export default RulesModal;
