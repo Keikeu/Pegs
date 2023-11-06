@@ -1,6 +1,6 @@
 import React from "react";
 import T from "prop-types";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import tutorial from "../media/tutorial.png";
 import asymmetrical from "../media/asymmetrical.png";
 import diamond from "../media/diamond.png";

@@ -1,5 +1,5 @@
 .container.neon {
-  background-image: url('../media/neon.jpg');
+  background-image: url("../media/neon.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -13,8 +13,13 @@
   color: #ffffff;
 }
 
-.container.neon .close-btn .material-icons,
-.container.neon .carousel-btn .material-icons {
+.container.neon .select fieldset,
+.container.neon .select svg {
+  color: rgba(255, 255, 255, 0.54);
+  border-color: rgba(255, 255, 255, 0.54);
+}
+
+.container.neon .close-btn .material-icons {
   color: #444444;
 }
 
@@ -24,12 +29,12 @@
 
 .container.neon .board .peg-active {
   background-image: linear-gradient(to top, #00bebe, #00cece, #00dede, #00eeee, #00ffff);
-  border: 2px solid #5735B7;
+  border: 2px solid #5735b7;
 }
 
 .container.neon .board .peg-highlighted {
   background-color: rgba(0, 0, 0, 0.1);
-  border: 2px solid #5735B7;
+  border: 2px solid #5735b7;
 }
 
 .container.neon .board .peg-blank {

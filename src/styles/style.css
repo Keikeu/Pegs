@@ -371,6 +371,11 @@ html,
     font-size: 14px;
   }
 
+  .container .select fieldset legend {
+    visibility: hidden;
+    display: none;
+  }
+
   .board-gallery .board-img {
     width: 72px;
   }

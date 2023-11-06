@@ -1,6 +1,6 @@
 import React from "react";
 import T from "prop-types";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import { GAME_STATES } from "../constants";
 import Icon from "./Icon";
 
