@@ -1,18 +1,19 @@
 import React from "react";
 import T from "prop-types";
+import { PEGS } from "../constants";
 
 const pegsMap = {
-  "-1": "",
-  0: "peg peg-blank",
-  1: "peg peg-alive",
-  2: "peg peg-highlighted",
-  3: "peg peg-active",
+  [PEGS.NONE]: "",
+  [PEGS.EMPTY]: "peg peg-blank",
+  [PEGS.REGULAR]: "peg peg-alive",
+  [PEGS.EMPTY_HIGHLIGHTED]: "peg peg-highlighted",
+  [PEGS.ACTIVE]: "peg peg-active",
 };
 
-const Peg = ({ value, onClick }) => <div className={pegsMap[value]} onClick={onClick}></div>;
+const Peg = ({ value, handlePegClick }) => <div className={pegsMap[value]} onClick={handlePegClick} />;
 
 Peg.propTypes = {
-  onClick: T.func,
+  handlePegClick: T.func,
   value: T.number,
 };
 

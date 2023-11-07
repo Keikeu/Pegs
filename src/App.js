@@ -51,7 +51,7 @@ const App = ({
         toggleRulesModal={toggleRulesModal}
       />
 
-      <Board onClick={handlePegClick} pegs={pegs} width={width} height={height} boardType={boardType} />
+      <Board handlePegClick={handlePegClick} pegs={pegs} width={width} height={height} boardType={boardType} />
 
       <Score stepNumber={stepNumber} pegNumber={pegNumber} boardType={boardType} />
 
