@@ -2,8 +2,8 @@ import React from "react";
 import T from "prop-types";
 
 const Score = ({ stepNumber, pegNumber, boardType }) => {
-  let bsm = localStorage.getItem("best-score-moves-" + boardType);
-  let bsp = localStorage.getItem("best-score-pegs-" + boardType);
+  const bestScoreMoves = localStorage.getItem("best-score-moves-" + boardType);
+  const bestScorePegs = localStorage.getItem("best-score-pegs-" + boardType);
 
   return (
     <div className="score">
@@ -11,10 +11,9 @@ const Score = ({ stepNumber, pegNumber, boardType }) => {
       <div>Pegs left: {pegNumber}</div>
       <div>
         Best score for this board:
-        {bsm && <span> {bsm} moves </span>}
-        {!bsm && <span> - </span>}/{bsp > 1 && <span> {bsp} pegs left </span>}
-        {bsp === "1" && <span> {bsp} peg left </span>}
-        {!bsp && <span> - </span>}
+        {bestScoreMoves ? `${bestScoreMoves} moves` : "-"}
+        &nbsp;/&nbsp;
+        {bestScorePegs ? `${bestScorePegs} ${bestScorePegs === "1" ? "peg" : "pegs"} left` : "-"}
       </div>
     </div>
   );
