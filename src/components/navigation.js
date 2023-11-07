@@ -3,16 +3,13 @@ import T from "prop-types";
 import Button from "@mui/material/Button";
 import Icon from "./Icon";
 
-const Navigation = ({ jumpToPointInHistory, toggleBoardsModal, toggleRulesModal, activePegs, stepNumber }) => (
-  <div className="options">
-    <Button
-      className="options__btn"
-      onClick={() => jumpToPointInHistory(activePegs.length === 0 ? stepNumber - 2 : stepNumber - 1)}
-    >
+const Navigation = ({ undo, restart, toggleBoardsModal, toggleRulesModal }) => (
+  <nav className="options">
+    <Button className="options__btn" onClick={undo}>
       <Icon name="keyboard_backspace" />
       Undo
     </Button>
-    <Button className="options__btn" onClick={() => jumpToPointInHistory(0)}>
+    <Button className="options__btn" onClick={restart}>
       <Icon name="replay" />
       Restart
     </Button>
@@ -24,15 +21,14 @@ const Navigation = ({ jumpToPointInHistory, toggleBoardsModal, toggleRulesModal,
       <Icon name="help_outline" />
       How to play
     </Button>
-  </div>
+  </nav>
 );
 
 Navigation.propTypes = {
-  jumpToPointInHistory: T.func,
+  undo: T.func,
+  restart: T.func,
   toggleBoardsModal: T.func,
   toggleRulesModal: T.func,
-  activePegs: T.array,
-  stepNumber: T.number,
 };
 
 export default Navigation;

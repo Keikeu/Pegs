@@ -23,7 +23,6 @@ const App = ({
   theme,
   changeTheme,
   jumpToPointInHistory,
-  activePegs,
   stepNumber,
   pegs,
   handlePegClick,
@@ -34,6 +33,8 @@ const App = ({
   gameState,
   setGameState,
   changeBoard,
+  undo,
+  restart,
 }) => {
   return (
     <div className={"container " + theme}>
@@ -44,14 +45,13 @@ const App = ({
       <h1 className="title">Peg Solitaire</h1>
 
       <Navigation
-        jumpToPointInHistory={jumpToPointInHistory}
+        undo={undo}
+        restart={restart}
         toggleBoardsModal={toggleBoardsModal}
         toggleRulesModal={toggleRulesModal}
-        activePegs={activePegs}
-        stepNumber={stepNumber}
       />
 
-      <Board onClick={(i, j) => handlePegClick(i, j)} pegs={pegs} width={width} height={height} boardType={boardType} />
+      <Board onClick={handlePegClick} pegs={pegs} width={width} height={height} boardType={boardType} />
 
       <Score stepNumber={stepNumber} pegNumber={pegNumber} boardType={boardType} />
 
@@ -89,7 +89,6 @@ App.propTypes = {
   theme: T.string,
   changeTheme: T.func,
   jumpToPointInHistory: T.func,
-  activePegs: T.array,
   stepNumber: T.number,
   pegs: T.array,
   handlePegClick: T.func,
@@ -100,6 +99,8 @@ App.propTypes = {
   gameState: T.string,
   setGameState: T.func,
   changeBoard: T.func,
+  undo: T.func,
+  restart: T.func,
 };
 
 export default App;

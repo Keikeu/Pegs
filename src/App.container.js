@@ -63,6 +63,14 @@ const AppContainer = () => {
     setGameState(null);
   }
 
+  function undo() {
+    jumpToPointInHistory(activePegs.length === 0 ? stepNumber - 2 : stepNumber - 1);
+  }
+
+  function restart() {
+    jumpToPointInHistory(0);
+  }
+
   const handlePegClick = useCallback(
     (i, j) => {
       const currentPegs = JSON.parse(JSON.stringify(history[stepNumber].pegs));
@@ -144,7 +152,6 @@ const AppContainer = () => {
       theme={theme}
       changeTheme={changeTheme}
       jumpToPointInHistory={jumpToPointInHistory}
-      activePegs={activePegs}
       stepNumber={stepNumber}
       pegs={pegs}
       handlePegClick={handlePegClick}
@@ -155,6 +162,8 @@ const AppContainer = () => {
       gameState={gameState}
       setGameState={setGameState}
       changeBoard={changeBoard}
+      undo={undo}
+      restart={restart}
     />
   );
 };
