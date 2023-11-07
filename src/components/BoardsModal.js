@@ -1,12 +1,12 @@
 import React from "react";
 import T from "prop-types";
 import Button from "@mui/material/Button";
-import tutorial from "../media/tutorial.png";
-import asymmetrical from "../media/asymmetrical.png";
-import diamond from "../media/diamond.png";
-import german from "../media/german.png";
-import english from "../media/english.png";
-import square from "../media/square.png";
+import tutorial from "../media/images/tutorial.png";
+import asymmetrical from "../media/images/asymmetrical.png";
+import diamond from "../media/images/diamond.png";
+import german from "../media/images/german.png";
+import english from "../media/images/english.png";
+import square from "../media/images/square.png";
 import Icon from "./Icon";
 
 const boardImages = [tutorial, english, german, asymmetrical, square, diamond];

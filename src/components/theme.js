@@ -1,7 +1,7 @@
 import React from "react";
 import T from "prop-types";
-import christmas from "../media/christmas.mp3";
-import neon from "../media/neon.mp3";
+import christmas from "../media/audio/christmas.mp3";
+import neon from "../media/audio/neon.mp3";
 import Button from "@mui/material/Button";
 import Snow from "../snow-animation.js";
 import { THEMES } from "../constants";

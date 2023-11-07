@@ -1,7 +1,7 @@
 import React from "react";
 import T from "prop-types";
 import Button from "@mui/material/Button";
-import rules from "../media/rules.gif";
+import rules from "../media/images/rules.gif";
 import Icon from "./Icon";
 
 const RulesModal = ({ closeModal }) => (
