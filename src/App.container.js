@@ -152,7 +152,6 @@ const AppContainer = () => {
       toggleBoardsModal={toggleBoardsModal}
       theme={theme}
       changeTheme={changeTheme}
-      jumpToPointInHistory={jumpToPointInHistory}
       stepNumber={stepNumber}
       pegs={pegs}
       handlePegClick={handlePegClick}

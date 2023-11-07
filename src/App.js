@@ -22,7 +22,6 @@ const App = ({
   toggleBoardsModal,
   theme,
   changeTheme,
-  jumpToPointInHistory,
   stepNumber,
   pegs,
   handlePegClick,
@@ -58,10 +57,10 @@ const App = ({
       <ThemeSelect changeTheme={changeTheme} theme={theme} />
 
       <StateModal
-        value={gameState}
+        gameState={gameState}
         stepNumber={stepNumber}
         pegNumber={pegNumber}
-        replay={() => jumpToPointInHistory(0)}
+        restart={restart}
         playEnglishBoard={() => changeBoard(1)}
         closeModal={() => setGameState(null)}
       />
@@ -88,7 +87,6 @@ App.propTypes = {
   toggleBoardsModal: T.func,
   theme: T.string,
   changeTheme: T.func,
-  jumpToPointInHistory: T.func,
   stepNumber: T.number,
   pegs: T.array,
   handlePegClick: T.func,

@@ -193,6 +193,11 @@ html,
   line-height: 1.4em;
 }
 
+.dialog p:last-of-type {
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
 .dialog .close-btn {
   position: absolute;
   top: 10px;
