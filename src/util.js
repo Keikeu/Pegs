@@ -21,17 +21,17 @@ export function findPegsToMove(pegs, width, height) {
       if (
         pegs[i][j] === PEGS.REGULAR &&
         ((i - 2 >= 0 &&
-          (pegs[i - 1][j] === 1 || pegs[i - 1][j] === PEGS.ACTIVE) &&
-          (pegs[i - 2][j] === 0 || pegs[i - 2][j] === PEGS.EMPTY_HIGHLIGHTED)) ||
+          (pegs[i - 1][j] === PEGS.REGULAR || pegs[i - 1][j] === PEGS.ACTIVE) &&
+          (pegs[i - 2][j] === PEGS.EMPTY || pegs[i - 2][j] === PEGS.EMPTY_HIGHLIGHTED)) ||
           (i + 2 <= height - 1 &&
-            (pegs[i + 1][j] === 1 || pegs[i + 1][j] === PEGS.ACTIVE) &&
-            (pegs[i + 2][j] === 0 || pegs[i + 2][j] === PEGS.EMPTY_HIGHLIGHTED)) ||
+            (pegs[i + 1][j] === PEGS.REGULAR || pegs[i + 1][j] === PEGS.ACTIVE) &&
+            (pegs[i + 2][j] === PEGS.EMPTY || pegs[i + 2][j] === PEGS.EMPTY_HIGHLIGHTED)) ||
           (j - 2 >= 0 &&
-            (pegs[i][j - 1] === 1 || pegs[i][j - 1] === PEGS.ACTIVE) &&
-            (pegs[i][j - 2] === 0 || pegs[i][j - 2] === PEGS.EMPTY_HIGHLIGHTED)) ||
+            (pegs[i][j - 1] === PEGS.REGULAR || pegs[i][j - 1] === PEGS.ACTIVE) &&
+            (pegs[i][j - 2] === PEGS.EMPTY || pegs[i][j - 2] === PEGS.EMPTY_HIGHLIGHTED)) ||
           (j + 2 <= width - 1 &&
-            (pegs[i][j + 1] === 1 || pegs[i][j + 1] === PEGS.ACTIVE) &&
-            (pegs[i][j + 2] === 0 || pegs[i][j + 2] === PEGS.EMPTY_HIGHLIGHTED)))
+            (pegs[i][j + 1] === PEGS.REGULAR || pegs[i][j + 1] === PEGS.ACTIVE) &&
+            (pegs[i][j + 2] === PEGS.EMPTY || pegs[i][j + 2] === PEGS.EMPTY_HIGHLIGHTED)))
       ) {
         pegsToMove.push([i, j]);
       }
@@ -43,7 +43,6 @@ export function findPegsToMove(pegs, width, height) {
 
 export function findHolesToFill(pegs, i, j, width, height) {
   let holesToFill = [];
-  console.log(pegs);
 
   if (
     i - 2 >= 0 &&
