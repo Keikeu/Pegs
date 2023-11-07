@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import "./styles/style.css";
 
-import { boards } from "./boards-map.js";
+import { boards } from "./boards.js";
 import { PEGS, THEMES } from "./constants";
 import App from "./App";
 import {
