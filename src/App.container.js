@@ -66,7 +66,6 @@ const AppContainer = () => {
   const handlePegClick = useCallback(
     (i, j) => {
       const currentPegs = JSON.parse(JSON.stringify(history[stepNumber].pegs));
-      const previousPegs = JSON.parse(JSON.stringify(history[stepNumber - 1].pegs));
       const pegsToMove = findPegsToMove(currentPegs, width, height);
       const holesToFill = findHolesToFill(currentPegs, i, j, width, height);
       const pegsActive = findActivePegs(currentPegs, width, height);
@@ -122,6 +121,7 @@ const AppContainer = () => {
 
       // different clickable peg -> switch focus to this one
       else if (pegsActive.length && isInArray(pegsToMove, [i, j])) {
+        const previousPegs = JSON.parse(JSON.stringify(history[stepNumber - 1].pegs));
         for (let i = 0; i < holesToFill.length; i++) {
           previousPegs[holesToFill[i][0]][holesToFill[i][1]] = 2;
         }
