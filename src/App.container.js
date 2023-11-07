@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import "./styles/style.css";
 
 import { boards } from "./boards-map.js";
-import { THEMES } from "./constants";
+import { PEGS, THEMES } from "./constants";
 import App from "./App";
 import {
   calculateGameState,
@@ -73,25 +73,25 @@ const AppContainer = () => {
       // clickable peg -> activate
       if (!pegsActive.length && isInArray(pegsToMove, [i, j])) {
         for (let i = 0; i < holesToFill.length; i++) {
-          currentPegs[holesToFill[i][0]][holesToFill[i][1]] = 2;
+          currentPegs[holesToFill[i][0]][holesToFill[i][1]] = PEGS.EMPTY_HIGHLIGHTED;
         }
-        currentPegs[i][j] = 3;
+        currentPegs[i][j] = PEGS.ACTIVE;
 
         setHistory((currentHistory) => [...currentHistory, { pegs: currentPegs }]);
       }
 
       // clickable hole -> jump to it
-      else if (currentPegs[i][j] === 2) {
+      else if (currentPegs[i][j] === PEGS.EMPTY_HIGHLIGHTED) {
         let a, b;
         for (let x = 0; x < height; x++) {
           for (let y = 0; y < width; y++) {
-            if (currentPegs[x][y] === 3) {
-              currentPegs[x][y] = 0;
-              currentPegs[i][j] = 1;
+            if (currentPegs[x][y] === PEGS.ACTIVE) {
+              currentPegs[x][y] = PEGS.EMPTY;
+              currentPegs[i][j] = PEGS.REGULAR;
               a = x;
               b = y;
-            } else if (currentPegs[x][y] === 2) {
-              currentPegs[x][y] = 0;
+            } else if (currentPegs[x][y] === PEGS.EMPTY_HIGHLIGHTED) {
+              currentPegs[x][y] = PEGS.EMPTY;
             }
           }
         }
@@ -123,9 +123,9 @@ const AppContainer = () => {
       else if (pegsActive.length && isInArray(pegsToMove, [i, j])) {
         const previousPegs = JSON.parse(JSON.stringify(history[stepNumber - 1].pegs));
         for (let i = 0; i < holesToFill.length; i++) {
-          previousPegs[holesToFill[i][0]][holesToFill[i][1]] = 2;
+          previousPegs[holesToFill[i][0]][holesToFill[i][1]] = PEGS.EMPTY_HIGHLIGHTED;
         }
-        previousPegs[i][j] = 3;
+        previousPegs[i][j] = PEGS.ACTIVE;
 
         setHistory((currentHistory) => [...currentHistory.slice(0, stepNumber), { pegs: previousPegs }]);
       }
