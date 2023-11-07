@@ -73,7 +73,7 @@ const AppContainer = () => {
 
   const handlePegClick = useCallback(
     (i, j) => {
-      const currentPegs = JSON.parse(JSON.stringify(history[stepNumber].pegs));
+      let currentPegs = JSON.parse(JSON.stringify(history[stepNumber].pegs));
       const pegsToMove = findPegsToMove(currentPegs, width, height);
       const holesToFill = findHolesToFill(currentPegs, i, j, width, height);
       const pegsActive = findActivePegs(currentPegs, width, height);
@@ -104,7 +104,8 @@ const AppContainer = () => {
           }
         }
 
-        setHistory((currentHistory) => [...currentHistory, { pegs: deleteTheMiddlePeg(a, b, [[i, j]], currentPegs) }]);
+        currentPegs = deleteTheMiddlePeg(a, b, [[i, j]], currentPegs);
+        setHistory((currentHistory) => [...currentHistory, { pegs: currentPegs }]);
 
         const newGameState = calculateGameState(
           pegNumber - 1,
