@@ -2,26 +2,50 @@ import React from "react";
 import T from "prop-types";
 import Button from "@mui/material/Button";
 import Icon from "./Icon";
+import styled from "styled-components";
+import { styled as styledMUI } from "@mui/system";
+
+const Options = styled.nav`
+  text-align: center;
+  color: var(--text);
+`;
+
+const OptionsButton = styledMUI(Button)`
+  font-size: 14px;
+	font-weight: 600;
+  color: inherit;
+
+	i {
+	  margin-right: 5px;
+	}
+
+	@media (max-width: 480px) {
+    font-size: 11px;
+		i {
+    	font-size: 20px;
+  	}
+	}
+`;
 
 const Navigation = ({ undo, restart, toggleBoardsModal, toggleRulesModal }) => (
-  <nav className="options">
-    <Button className="options__btn" onClick={undo}>
+  <Options>
+    <OptionsButton onClick={undo}>
       <Icon name="keyboard_backspace" />
       Undo
-    </Button>
-    <Button className="options__btn" onClick={restart}>
+    </OptionsButton>
+    <OptionsButton onClick={restart}>
       <Icon name="replay" />
       Restart
-    </Button>
-    <Button className="options__btn" onClick={toggleBoardsModal}>
+    </OptionsButton>
+    <OptionsButton onClick={toggleBoardsModal}>
       <Icon name="image_aspect_ratio" />
       Other boards
-    </Button>
-    <Button className="options__btn" onClick={toggleRulesModal}>
+    </OptionsButton>
+    <OptionsButton onClick={toggleRulesModal}>
       <Icon name="help_outline" />
       How to play
-    </Button>
-  </nav>
+    </OptionsButton>
+  </Options>
 );
 
 Navigation.propTypes = {

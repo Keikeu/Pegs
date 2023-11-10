@@ -2,24 +2,60 @@ import React from "react";
 import T from "prop-types";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { styled as styledMUI } from "@mui/system";
 
 import { THEMES } from "../constants";
+import styled from "styled-components";
+
+const ThemeSelectBox = styled.div`
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+
+  & > span {
+    margin-right: 16px;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 25px;
+    left: 30px;
+    right: auto;
+  }
+  @media (max-width: 480px) {
+    bottom: 15px;
+    left: 20px;
+    font-size: 14px;
+  }
+`;
+
+const CustomSelect = styledMUI(Select)`
+	color: var(--text);
+
+	fieldset,
+	svg {
+		color: var(--text-opacity);
+		border-color: var(--text-opacity) !important;
+	}	
+
+	@media (max-width: 768px) {
+		& > div {
+			padding: 4px 8px;
+		}
+	}
+	@media (max-width: 480px) {
+		font-size: 14px;
+	}
+`;
 
 const ThemeSelect = ({ changeTheme, theme }) => (
-  <div className="theme-select">
+  <ThemeSelectBox>
     <span>Theme:</span>
-    <Select
-      onChange={(e) => changeTheme(e.target.value)}
-      value={theme}
-      className="select"
-      size="small"
-      variant="outlined"
-    >
+    <CustomSelect onChange={(e) => changeTheme(e.target.value)} value={theme} size="small" variant="outlined">
       <MenuItem value={THEMES.DEFAULT}>Default</MenuItem>
       <MenuItem value={THEMES.CHRISTMAS}>Christmas</MenuItem>
       <MenuItem value={THEMES.NEON}>Neon</MenuItem>
-    </Select>
-  </div>
+    </CustomSelect>
+  </ThemeSelectBox>
 );
 
 ThemeSelect.propTypes = {

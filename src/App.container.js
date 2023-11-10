@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useState } from "react";
-import "./styles/style.css";
 
 import { boards } from "./boards.js";
 import { PEGS, THEMES } from "./constants";
@@ -15,7 +14,7 @@ import {
 
 const AppContainer = () => {
   const [boardIndex, setBoardIndex] = useState(parseInt(localStorage.getItem("board")) || 0);
-  const [rulesModalOpen, setRulesModalOpen] = useState(boardIndex === 0 ? false : false); //
+  const [rulesModalOpen, setRulesModalOpen] = useState(boardIndex === 0 ? true : false);
   const [boardsModalOpen, setBoardsModalOpen] = useState(false);
   const [isAudioOn, setAudio] = useState(false);
 

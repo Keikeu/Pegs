@@ -7,26 +7,62 @@ import german from "../media/images/german.png";
 import english from "../media/images/english.png";
 import square from "../media/images/square.png";
 import Modal from "./Modal";
+import styled, { css } from "styled-components";
 
 const boardImages = [tutorial, english, german, asymmetrical, square, diamond];
 const boardNames = ["Tutorial", "English", "German", "Asymmetrical", "Square", "Diamond"];
+
+const BoardGallery = styled.div`
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 640px;
+`;
+
+const GalleryItem = styled.div`
+  border-radius: 8px;
+  padding: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--neutral-190);
+  }
+
+  ${({ $current }) =>
+    $current &&
+    css`
+      background-color: var(--neutral-190);
+      border: 1px solid var(--neutral-180);
+    `}
+`;
+
+const BoardImage = styled.img`
+  width: 160px;
+  height: auto;
+  margin: auto;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+`;
 
 const BoardsModal = ({ initialIndex, closeModal, changeBoard }) => {
   return (
     <Modal closeModal={closeModal}>
       <h2>Play on a different board</h2>
-      <div className="board-gallery">
+      <BoardGallery>
         {boardImages.map((item, i) => (
-          <div
+          <GalleryItem
             key={boardNames[i]}
-            className={`gallery-item${initialIndex === i ? " gallery-item--current" : ""}`}
+            $current={initialIndex === i ? true : undefined}
             onClick={() => changeBoard(i)}
           >
             <h3>{boardNames[i]}</h3>
-            <img className="board-img" src={item} alt={boardNames[i]} />
-          </div>
+            <BoardImage src={item} alt={boardNames[i]} />
+          </GalleryItem>
         ))}
-      </div>
+      </BoardGallery>
     </Modal>
   );
 };

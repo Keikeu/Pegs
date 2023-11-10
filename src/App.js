@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/style.css";
 import T from "prop-types";
 
 import Board from "./components/Board.js";
@@ -12,6 +11,49 @@ import RulesModal from "./components/RulesModal.js";
 import StateModal from "./components/StateModal.js";
 import BoardsModal from "./components/BoardsModal.js";
 import { THEMES } from "./constants.js";
+import styled, { css } from "styled-components";
+import NeonJPG from "./media/images/neon.jpg";
+
+const Container = styled.div`
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  overflow: hidden;
+  color: var(--text);
+
+  ${({ theme }) => {
+    if (theme === THEMES.DEFAULT) {
+      return css`
+        background-color: var(--background);
+      `;
+    } else if (theme === THEMES.CHRISTMAS) {
+      return css`
+        background-color: var(--background-100);
+        background-image: linear-gradient(to bottom, var(--background-110), var(--background-100));
+      `;
+    } else if (theme === THEMES.NEON) {
+      return css`
+        background-image: url(${NeonJPG});
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      `;
+    }
+  }}
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  margin: 20px;
+  font-size: 32px;
+  font-weight: 700;
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin: 10px;
+  }
+`;
 
 const App = ({
   isAudioOn,
@@ -36,12 +78,12 @@ const App = ({
   restart,
 }) => {
   return (
-    <div className={"container " + theme}>
+    <Container theme={theme} className={theme}>
       {theme !== THEMES.DEFAULT && <Music theme={theme} isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
 
       {theme === THEMES.CHRISTMAS && <Snow />}
 
-      <h1 className="title">Peg Solitaire</h1>
+      <Title>Peg Solitaire</Title>
 
       <Navigation
         undo={undo}
@@ -74,7 +116,7 @@ const App = ({
           closeModal={toggleBoardsModal}
         />
       )}
-    </div>
+    </Container>
   );
 };
 

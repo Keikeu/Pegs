@@ -5,11 +5,20 @@ import neon from "../media/audio/neon.mp3";
 import Button from "@mui/material/Button";
 import { THEMES } from "../constants";
 import Icon from "./Icon";
+import { styled } from "@mui/system";
 
 const themeSongs = {
   [THEMES.CHRISTMAS]: christmas,
   [THEMES.NEON]: neon,
 };
+
+const AudioButton = styled(Button)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  color: var(--text);
+`;
 
 const Music = ({ theme, isAudioOn, toggleAudio }) => (
   <div>
@@ -18,14 +27,14 @@ const Music = ({ theme, isAudioOn, toggleAudio }) => (
         {isAudioOn ? (
           <>
             <audio autoPlay loop src={themeSongs[theme]} type="audio/mpeg" />
-            <Button className="audio-btn" onClick={toggleAudio}>
+            <AudioButton onClick={toggleAudio}>
               <Icon name="volume_up" />
-            </Button>
+            </AudioButton>
           </>
         ) : (
-          <Button className="audio-btn" onClick={toggleAudio}>
+          <AudioButton onClick={toggleAudio}>
             <Icon name="volume_off" />
-          </Button>
+          </AudioButton>
         )}
       </>
     )}

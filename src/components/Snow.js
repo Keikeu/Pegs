@@ -1,5 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import T from "prop-types";
+import styled from "styled-components";
+
+const Canvas = styled.canvas`
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  z-index: var(--z-index-0);
+  pointer-events: none;
+  position: fixed;
+`;
 
 const SnowflakesCanvas = ({ angle }) => {
   const canvasRef = React.createRef();
@@ -45,7 +56,7 @@ const SnowflakesCanvas = ({ angle }) => {
     });
   }, [angle, canvasRef, flakes, height, width]);
 
-  return <canvas className="snow-container" width={width} height={height} ref={canvasRef} />;
+  return <Canvas width={width} height={height} ref={canvasRef} />;
 };
 
 SnowflakesCanvas.propTypes = {
@@ -69,21 +80,7 @@ const Snow = () => {
     };
   }, []);
 
-  return (
-    <>
-      <SnowflakesCanvas angle={angle} />
-      <svg className="ground" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="100%" stopColor="#8fa5b3" />
-          </linearGradient>
-        </defs>
-        <path d="M -40 100 Q 10 -70 60 100 " fill="url(#gradient)" />
-        <path d="M 15 100 Q 80 -100 120 100 " fill="url(#gradient)" />
-      </svg>
-    </>
-  );
+  return <SnowflakesCanvas angle={angle} />;
 };
 
 export default Snow;
