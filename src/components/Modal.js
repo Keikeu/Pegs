@@ -43,9 +43,6 @@ const ModalBox = styled.div`
   ${({ variant }) => {
     if (variant === "win") {
       return css`
-        & > i {
-          font-size: 48px;
-        }
         & > h2 {
           margin-top: -10px;
           margin-bottom: 25px;
@@ -57,9 +54,6 @@ const ModalBox = styled.div`
       `;
     } else if (variant === "defeat") {
       return css`
-        & > i {
-          font-size: 48px;
-        }
         & > h2 {
           margin-top: -10px;
           margin-bottom: 25px;
@@ -95,7 +89,6 @@ const CloseButton = styledMUI(Button)`
   top: 10px;
   right: 5px;
   color: var(--neutral-100);
-  font-size: 24px;
   cursor: pointer;
 `;
 
@@ -104,7 +97,7 @@ const Modal = ({ closeModal, variant, children }) => (
     <ModalBackground onClick={closeModal} />
     <ModalBox variant={variant}>
       <CloseButton onClick={closeModal}>
-        <Icon name="close" />
+        <Icon name="close" size={24} />
       </CloseButton>
       {children}
     </ModalBox>

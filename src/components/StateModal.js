@@ -11,7 +11,7 @@ const StateModal = ({ gameState, stepNumber, pegNumber, closeModal, restart, pla
   } else if (gameState === GAME_STATES.DEFEAT) {
     return (
       <Modal closeModal={closeModal} variant="defeat">
-        <Icon name="sentiment_very_dissatisfied" />
+        <Icon name="sentiment_very_dissatisfied" size={48} />
         <h2>You lost</h2>
         <p>Moves: {Math.floor(stepNumber / 2)}</p>
         <p>Pegs left: {pegNumber}</p>
@@ -24,7 +24,7 @@ const StateModal = ({ gameState, stepNumber, pegNumber, closeModal, restart, pla
   } else if (gameState === GAME_STATES.PART_WIN) {
     return (
       <Modal closeModal={closeModal} variant="win">
-        <Icon name="sentiment_satisfied_alt" />
+        <Icon name="sentiment_satisfied_alt" size={48} />
         <h2>Almost there!</h2>
         <p>Moves: {Math.floor(stepNumber / 2)}</p>
         <p>Pegs left: {pegNumber}</p>
@@ -40,7 +40,7 @@ const StateModal = ({ gameState, stepNumber, pegNumber, closeModal, restart, pla
   } else if (gameState === GAME_STATES.FULL_WIN) {
     return (
       <Modal closeModal={closeModal} variant="win">
-        <Icon name="sentiment_very_satisfied" />
+        <Icon name="sentiment_very_satisfied" size={48} />
         <h2>Wow! You did it!</h2>
         <p>Moves: {Math.floor(stepNumber / 2)}</p>
         <p>Pegs left: {pegNumber}</p>
@@ -53,7 +53,7 @@ const StateModal = ({ gameState, stepNumber, pegNumber, closeModal, restart, pla
   } else if (gameState === GAME_STATES.TUTORIAL_WIN) {
     return (
       <Modal closeModal={closeModal} variant="win">
-        <Icon name="sentiment_very_satisfied" />
+        <Icon name="sentiment_very_satisfied" size={48} />
         <h2>Nice!</h2>
         <p>Moves: {Math.floor(stepNumber / 2)}</p>
         <p>Pegs left: {pegNumber}</p>
