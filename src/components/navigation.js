@@ -13,6 +13,7 @@ const Options = styled.nav`
 const OptionsButton = styledMUI(Button)`
   font-size: 14px;
 	font-weight: 600;
+	letter-spacing: -0.2px;
   color: inherit;
 
 	i {
