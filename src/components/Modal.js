@@ -19,9 +19,10 @@ const ModalBox = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
-  max-width: 600px;
+  width: 600px;
+  max-width: 80%;
   max-height: 95%;
+  overflow-y: auto;
   background-color: var(--neutral-200);
   padding: 30px 40px 40px;
   text-align: center;
@@ -72,11 +73,10 @@ const ModalBox = styled.div`
   }}
 
   @media (max-width: 768px) {
-    width: 70%;
+    max-width: 90%;
   }
 
   @media (max-width: 480px) {
-    width: 90%;
     padding-left: 16px;
     padding-right: 16px;
 

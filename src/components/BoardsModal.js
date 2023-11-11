@@ -17,7 +17,16 @@ const BoardGallery = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  height: 640px;
+  min-height: 640px;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    min-height: 0;
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 `;
 
 const GalleryItem = styled.div`
@@ -41,10 +50,6 @@ const BoardImage = styled.img`
   width: 160px;
   height: auto;
   margin: auto;
-
-  @media (max-width: 480px) {
-    width: 100%;
-  }
 `;
 
 const BoardsModal = ({ initialIndex, closeModal, changeBoard }) => {
