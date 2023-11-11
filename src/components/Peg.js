@@ -2,18 +2,15 @@ import React from "react";
 import T from "prop-types";
 import { PEGS } from "../constants";
 import styled, { css } from "styled-components";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 
 const PegShape = styled.div`
   border-radius: 50%;
   transition: box-shadow 0.1s ease-in-out;
-  z-index: var(--z-index-above);
+  position: relative;
 
   ${({ variant }) => {
-    if (variant === PEGS.EMPTY) {
-      return css`
-        border: 2px solid var(--peg-empty);
-      `;
-    } else if (variant === PEGS.REGULAR) {
+    if (variant === PEGS.REGULAR) {
       return css`
         background-color: var(--peg-100);
         background-image: linear-gradient(to top, var(--peg-100), var(--peg-110));
@@ -52,11 +49,55 @@ const PegShape = styled.div`
   }}
 `;
 
-const Peg = ({ value, handlePegClick }) => <PegShape variant={value} onClick={handlePegClick} />;
+const Peg = ({ id, value, handlePegClick, isMovable }) => {
+  const { isOver, setNodeRef: setDroppableNodeRef } = useDroppable({
+    id: String(id),
+  });
+  const droppableStyle = {
+    backgroundColor: isOver ? "rgba(0, 0, 0, 0.15)" : undefined,
+  };
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef: setDraggableNodeRef,
+    transform,
+  } = useDraggable({
+    id: String(id),
+  });
+
+  const draggableStyle = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        zIndex: 1,
+      }
+    : undefined;
+
+  if (value === PEGS.EMPTY_HIGHLIGHTED) {
+    return <PegShape variant={value} onClick={handlePegClick} ref={setDroppableNodeRef} style={droppableStyle} />;
+  }
+
+  if (isMovable && (value === PEGS.ACTIVE || value === PEGS.REGULAR)) {
+    return (
+      <PegShape
+        variant={value}
+        onClick={handlePegClick}
+        ref={setDraggableNodeRef}
+        style={draggableStyle}
+        {...listeners}
+        {...attributes}
+      />
+    );
+  }
+
+  return <PegShape variant={value} onClick={handlePegClick} />;
+};
 
 Peg.propTypes = {
+  id: T.number,
   handlePegClick: T.func,
   value: T.number,
+  isMovable: T.bool,
 };
 
 export default Peg;

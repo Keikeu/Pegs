@@ -76,6 +76,8 @@ const App = ({
   changeBoard,
   undo,
   restart,
+  pegsToMove,
+  activePegs,
 }) => {
   return (
     <Container theme={theme} className={theme}>
@@ -92,7 +94,15 @@ const App = ({
         toggleRulesModal={toggleRulesModal}
       />
 
-      <Board handlePegClick={handlePegClick} pegs={pegs} width={width} height={height} boardType={boardType} />
+      <Board
+        handlePegClick={handlePegClick}
+        pegs={pegs}
+        pegsToMove={pegsToMove}
+        activePegs={activePegs}
+        width={width}
+        height={height}
+        boardType={boardType}
+      />
 
       <Score stepNumber={stepNumber} pegNumber={pegNumber} boardType={boardType} />
 
@@ -141,6 +151,8 @@ App.propTypes = {
   changeBoard: T.func,
   undo: T.func,
   restart: T.func,
+  pegsToMove: T.array,
+  activePegs: T.array,
 };
 
 export default App;

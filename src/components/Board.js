@@ -2,7 +2,10 @@ import React from "react";
 import T from "prop-types";
 import Peg from "./Peg.js";
 import styled, { css } from "styled-components";
-import { BOARD_TYPES } from "../constants.js";
+import { BOARD_TYPES, PEGS } from "../constants.js";
+import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { restrictToWindowEdges } from "@dnd-kit/modifiers";
+import { isInArray } from "../util.js";
 
 const BoardBox = styled.div`
   margin: auto;
@@ -80,22 +83,93 @@ const BoardBox = styled.div`
   }}
 `;
 
-const Board = ({ pegs, width, height, handlePegClick, boardType }) => {
+const ShadowPeg = styled.div`
+  display: block;
+  border-radius: 50%;
+  border: 2px solid var(--peg-empty);
+  z-index: var(--z-index-0);
+`;
+
+const Board = ({ pegs, pegsToMove, activePegs, width, height, handlePegClick, boardType }) => {
   const pegIndexArray = Array.from({ length: width * height }, (_, i) => i);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 4,
+      },
+    })
+  );
+
+  function calcX(index) {
+    return Math.floor(index / width);
+  }
+
+  function calcY(index) {
+    return index % width;
+  }
+
+  function handleDragEnd(event) {
+    const { active, over } = event;
+
+    if (active && over && active.id !== over.id) {
+      const pegIndex = over.id;
+      const x = calcX(pegIndex);
+      const y = calcY(pegIndex);
+      handlePegClick(x, y);
+    }
+  }
+
+  function handleDragStart(event) {
+    const { id: pegIndex } = event.active;
+    const x = calcX(pegIndex);
+    const y = calcY(pegIndex);
+    if (!isInArray(activePegs, [x, y])) {
+      handlePegClick(x, y);
+    }
+  }
+
   return (
-    <BoardBox $boardType={boardType}>
-      {pegIndexArray.map((pegIndex) => {
-        const x = Math.floor(pegIndex / width);
-        const y = pegIndex % width;
-        return <Peg key={pegIndex} value={pegs[x][y]} handlePegClick={() => handlePegClick(x, y)} />;
-      })}
-    </BoardBox>
+    <>
+      <BoardBox $boardType={boardType}>
+        {pegIndexArray.map((pegIndex) => {
+          const x = calcX(pegIndex);
+          const y = calcY(pegIndex);
+          const value = pegs[x][y];
+          if (value === PEGS.NONE) return <Peg key={pegIndex} value={value} />;
+          return <ShadowPeg key={pegIndex} />;
+        })}
+      </BoardBox>
+      <DndContext
+        sensors={sensors}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        modifiers={[restrictToWindowEdges]}
+      >
+        <BoardBox $boardType={boardType}>
+          {pegIndexArray.map((pegIndex) => {
+            const x = calcX(pegIndex);
+            const y = calcY(pegIndex);
+            return (
+              <Peg
+                key={pegIndex}
+                id={pegIndex}
+                value={pegs[x][y]}
+                handlePegClick={() => handlePegClick(x, y)}
+                isMovable={isInArray(pegsToMove, [x, y]) || isInArray(activePegs, [x, y])}
+              />
+            );
+          })}
+        </BoardBox>
+      </DndContext>
+    </>
   );
 };
 
 Board.propTypes = {
   pegs: T.array,
+  pegsToMove: T.array,
+  activePegs: T.array,
   width: T.number,
   height: T.number,
   handlePegClick: T.func,

@@ -30,6 +30,7 @@ const AppContainer = () => {
   const pegNumber = useMemo(() => defaultPegNumber - Math.floor(stepNumber / 2), [defaultPegNumber, stepNumber]);
   const pegs = useMemo(() => history[stepNumber].pegs.slice(), [history, boardIndex, stepNumber]);
   const activePegs = useMemo(() => findActivePegs(pegs, width, height), [pegs]);
+  const pegsToMove = useMemo(() => findPegsToMove(pegs, width, height), [pegs]);
 
   function toggleRulesModal() {
     setRulesModalOpen((open) => !open);
@@ -73,12 +74,10 @@ const AppContainer = () => {
   const handlePegClick = useCallback(
     (i, j) => {
       let currentPegs = JSON.parse(JSON.stringify(history[stepNumber].pegs));
-      const pegsToMove = findPegsToMove(currentPegs, width, height);
       const holesToFill = findHolesToFill(currentPegs, i, j, width, height);
-      const pegsActive = findActivePegs(currentPegs, width, height);
 
       // clickable peg -> activate
-      if (!pegsActive.length && isInArray(pegsToMove, [i, j])) {
+      if (!activePegs.length && isInArray(pegsToMove, [i, j])) {
         for (let i = 0; i < holesToFill.length; i++) {
           currentPegs[holesToFill[i][0]][holesToFill[i][1]] = PEGS.EMPTY_HIGHLIGHTED;
         }
@@ -123,12 +122,12 @@ const AppContainer = () => {
       }
 
       // active peg -> deactivate
-      else if (isInArray(pegsActive, [i, j])) {
+      else if (isInArray(activePegs, [i, j])) {
         jumpToPointInHistory(stepNumber - 1);
       }
 
       // different clickable peg -> switch focus to this one
-      else if (pegsActive.length && isInArray(pegsToMove, [i, j])) {
+      else if (activePegs.length && isInArray(pegsToMove, [i, j])) {
         const previousPegs = JSON.parse(JSON.stringify(history[stepNumber - 1].pegs));
         for (let i = 0; i < holesToFill.length; i++) {
           previousPegs[holesToFill[i][0]][holesToFill[i][1]] = PEGS.EMPTY_HIGHLIGHTED;
@@ -163,6 +162,8 @@ const AppContainer = () => {
       changeBoard={changeBoard}
       undo={undo}
       restart={restart}
+      pegsToMove={pegsToMove}
+      activePegs={activePegs}
     />
   );
 };
