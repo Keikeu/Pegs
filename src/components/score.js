@@ -4,16 +4,16 @@ import styled from "styled-components";
 
 const ScoreBox = styled.div`
   position: absolute;
-  bottom: 50px;
-  left: 50px;
+  bottom: 40px;
+  left: 40px;
 
   @media (max-width: 768px) {
-    bottom: 60px;
-    left: 30px;
+    bottom: 64px;
+    left: 32px;
   }
   @media (max-width: 480px) {
-    bottom: 50px;
-    left: 20px;
+    bottom: 48px;
+    left: 16px;
     font-size: 14px;
   }
 `;

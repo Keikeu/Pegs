@@ -14,9 +14,8 @@ const themeSongs = {
 
 const AudioButton = styled(Button)`
   position: absolute;
-  top: 0;
-  right: 0;
-  margin: 10px;
+  top: 8px;
+  right: 4px;
   color: var(--text);
 `;
 

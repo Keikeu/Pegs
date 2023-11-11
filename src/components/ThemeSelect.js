@@ -9,21 +9,21 @@ import styled from "styled-components";
 
 const ThemeSelectBox = styled.div`
   position: absolute;
-  bottom: 50px;
-  right: 50px;
+  bottom: 32px;
+  right: 40px;
 
   & > span {
     margin-right: 16px;
   }
 
   @media (max-width: 768px) {
-    bottom: 25px;
-    left: 30px;
+    bottom: 24px;
+    left: 32px;
     right: auto;
   }
   @media (max-width: 480px) {
-    bottom: 15px;
-    left: 20px;
+    bottom: 12px;
+    left: 16px;
     font-size: 14px;
   }
 `;

@@ -4,12 +4,7 @@ import { PEGS } from "../constants";
 import styled, { css } from "styled-components";
 
 const PegShape = styled.div`
-  width: 80%;
-  height: 80%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
-  margin: 5px;
   transition: box-shadow 0.1s ease-in-out;
   z-index: var(--z-index-above);
 

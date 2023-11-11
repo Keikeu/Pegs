@@ -45,13 +45,13 @@ const Container = styled.div`
 
 const Title = styled.h1`
   text-align: center;
-  margin: 20px;
+  margin: 16px;
   font-size: 32px;
   font-weight: 700;
 
   @media (max-width: 480px) {
     font-size: 24px;
-    margin: 10px;
+    margin: 12px;
   }
 `;
 

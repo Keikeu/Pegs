@@ -12,18 +12,20 @@ const BoardBox = styled.div`
   bottom: 0;
   right: 0;
   display: grid;
+  gap: 12px;
 
   @media (max-width: 480px) {
-    height: 95vw;
-    width: 95vw;
-    max-height: 380px;
-    max-width: 380px;
+    height: 380px;
+    width: 380px;
+    max-height: 95vw;
+    max-width: 95vw;
     margin: auto;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+    gap: 8px;
   }
 
   ${({ $boardType }) => {

@@ -17,11 +17,11 @@ const OptionsButton = styledMUI(Button)`
   color: inherit;
 
 	i {
-	  margin-right: 5px;
+	  margin-right: 4px;
 	}
 
 	@media (max-width: 480px) {
-    font-size: 11px;
+    font-size: 12px;
 		i {
     	font-size: 20px;
   	}

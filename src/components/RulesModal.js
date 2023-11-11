@@ -5,11 +5,11 @@ import Modal from "./Modal";
 import styled from "styled-components";
 
 const RulesImg = styled.img`
-  margin: 20px auto 0;
-  max-width: 217px;
+  margin: 24px auto 0;
+  width: 172px;
 
   @media (max-width: 480px) {
-    max-width: 110px;
+    width: 104px;
   }
 `;
 

@@ -12,6 +12,7 @@ const ModalBackground = styled.div`
   width: 100vw;
   height: 100%;
   background-color: var(--backdrop);
+  z-index: var(--z-index-above);
 `;
 
 const ModalBox = styled.div`
@@ -24,14 +25,14 @@ const ModalBox = styled.div`
   max-height: 95%;
   overflow-y: auto;
   background-color: var(--neutral-200);
-  padding: 30px 40px 40px;
+  padding: 32px 40px 40px;
   text-align: center;
   border-radius: 16px;
   color: var(--neutral-100);
   z-index: var(--z-index-above);
 
   p {
-    margin: 10px 0;
+    margin: 12px 0;
     line-height: 1.4em;
   }
 
@@ -40,13 +41,14 @@ const ModalBox = styled.div`
     margin-bottom: 32px;
   }
 
+  & > h2 {
+    margin-top: -12px;
+    margin-bottom: 24px;
+  }
+
   ${({ variant }) => {
     if (variant === "win") {
       return css`
-        & > h2 {
-          margin-top: -10px;
-          margin-bottom: 25px;
-        }
         & > i,
         & > h2 {
           color: var(--success-100);
@@ -54,10 +56,6 @@ const ModalBox = styled.div`
       `;
     } else if (variant === "defeat") {
       return css`
-        & > h2 {
-          margin-top: -10px;
-          margin-bottom: 25px;
-        }
         & > i,
         & > h2 {
           color: var(--defeat-100);
@@ -86,8 +84,8 @@ const ModalBox = styled.div`
 
 const CloseButton = styledMUI(Button)`
   position: absolute;
-  top: 10px;
-  right: 5px;
+  top: 8px;
+  right: 0;
   color: var(--neutral-100);
   cursor: pointer;
 `;
