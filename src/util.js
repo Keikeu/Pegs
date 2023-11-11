@@ -21,17 +21,17 @@ export function findPegsToMove(pegs, width, height) {
       if (
         pegs[i][j] === PEGS.REGULAR &&
         ((i - 2 >= 0 &&
-          (pegs[i - 1][j] === PEGS.REGULAR || pegs[i - 1][j] === PEGS.ACTIVE) &&
-          (pegs[i - 2][j] === PEGS.EMPTY || pegs[i - 2][j] === PEGS.EMPTY_HIGHLIGHTED)) ||
+          [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i - 1][j]) &&
+          [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i - 2][j])) ||
           (i + 2 <= height - 1 &&
-            (pegs[i + 1][j] === PEGS.REGULAR || pegs[i + 1][j] === PEGS.ACTIVE) &&
-            (pegs[i + 2][j] === PEGS.EMPTY || pegs[i + 2][j] === PEGS.EMPTY_HIGHLIGHTED)) ||
+            [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i + 1][j]) &&
+            [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i + 2][j])) ||
           (j - 2 >= 0 &&
-            (pegs[i][j - 1] === PEGS.REGULAR || pegs[i][j - 1] === PEGS.ACTIVE) &&
-            (pegs[i][j - 2] === PEGS.EMPTY || pegs[i][j - 2] === PEGS.EMPTY_HIGHLIGHTED)) ||
+            [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i][j - 1]) &&
+            [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i][j - 2])) ||
           (j + 2 <= width - 1 &&
-            (pegs[i][j + 1] === PEGS.REGULAR || pegs[i][j + 1] === PEGS.ACTIVE) &&
-            (pegs[i][j + 2] === PEGS.EMPTY || pegs[i][j + 2] === PEGS.EMPTY_HIGHLIGHTED)))
+            [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i][j + 1]) &&
+            [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i][j + 2])))
       ) {
         pegsToMove.push([i, j]);
       }
@@ -46,29 +46,29 @@ export function findHolesToFill(pegs, i, j, width, height) {
 
   if (
     i - 2 >= 0 &&
-    pegs[i - 1][j] === PEGS.REGULAR &&
-    (pegs[i - 2][j] === PEGS.EMPTY || pegs[i - 2][j] === PEGS.EMPTY_HIGHLIGHTED)
+    [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i - 1][j]) &&
+    [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i - 2][j])
   ) {
     holesToFill.push([i - 2, j]);
   }
   if (
     i + 2 <= height - 1 &&
-    pegs[i + 1][j] === PEGS.REGULAR &&
-    (pegs[i + 2][j] === PEGS.EMPTY || pegs[i + 2][j] === PEGS.EMPTY_HIGHLIGHTED)
+    [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i + 1][j]) &&
+    [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i + 2][j])
   ) {
     holesToFill.push([i + 2, j]);
   }
   if (
     j - 2 >= 0 &&
-    pegs[i][j - 1] === PEGS.REGULAR &&
-    (pegs[i][j - 2] === PEGS.EMPTY || pegs[i][j - 2] === PEGS.EMPTY_HIGHLIGHTED)
+    [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i][j - 1]) &&
+    [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i][j - 2])
   ) {
     holesToFill.push([i, j - 2]);
   }
   if (
     j + 2 <= width - 1 &&
-    pegs[i][j + 1] === PEGS.REGULAR &&
-    (pegs[i][j + 2] === PEGS.EMPTY || pegs[i][j + 2] === PEGS.EMPTY_HIGHLIGHTED)
+    [PEGS.REGULAR, PEGS.ACTIVE].includes(pegs[i][j + 1]) &&
+    [PEGS.EMPTY, PEGS.EMPTY_HIGHLIGHTED].includes(pegs[i][j + 2])
   ) {
     holesToFill.push([i, j + 2]);
   }
