@@ -28,9 +28,9 @@ const AppContainer = () => {
   const defaultPegNumber = useMemo(() => boards[boardIndex].defaultPegsNumber, [boardIndex]);
   const stepNumber = useMemo(() => history.length - 1, [history]);
   const pegNumber = useMemo(() => defaultPegNumber - Math.floor(stepNumber / 2), [defaultPegNumber, stepNumber]);
-  const pegs = useMemo(() => history[stepNumber].pegs.slice(), [history, boardIndex, stepNumber]);
-  const activePegs = useMemo(() => findActivePegs(pegs, width, height), [pegs]);
-  const pegsToMove = useMemo(() => findPegsToMove(pegs, width, height), [pegs]);
+  const pegs = useMemo(() => history[stepNumber].pegs.slice(), [history, stepNumber]);
+  const activePegs = useMemo(() => findActivePegs(pegs, width, height), [pegs, width, height]);
+  const pegsToMove = useMemo(() => findPegsToMove(pegs, width, height), [pegs, width, height]);
 
   function toggleRulesModal() {
     setRulesModalOpen((open) => !open);
@@ -57,11 +57,14 @@ const AppContainer = () => {
     localStorage.setItem("board", index);
   }
 
-  function jumpToPointInHistory(where) {
-    if (where < 0) return;
-    setHistory(history.slice(0, where + 1));
-    setGameState(null);
-  }
+  const jumpToPointInHistory = useCallback(
+    (where) => {
+      if (where < 0) return;
+      setHistory(history.slice(0, where + 1));
+      setGameState(null);
+    },
+    [history]
+  );
 
   function undo() {
     jumpToPointInHistory(activePegs.length === 0 ? stepNumber - 2 : stepNumber - 1);
@@ -137,7 +140,7 @@ const AppContainer = () => {
         setHistory((currentHistory) => [...currentHistory.slice(0, stepNumber), { pegs: previousPegs }]);
       }
     },
-    [stepNumber, history]
+    [activePegs, boardType, gameState, height, width, jumpToPointInHistory, pegsToMove, pegNumber, stepNumber, history]
   );
 
   return (
