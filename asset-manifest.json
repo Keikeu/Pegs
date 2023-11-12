@@ -1,25 +1,23 @@
 {
-  "main.css": "/Pegs/static/css/main.5100b957.chunk.css",
-  "main.js": "/Pegs/static/js/main.d04e6b5e.chunk.js",
-  "main.js.map": "/Pegs/static/js/main.d04e6b5e.chunk.js.map",
-  "static/css/1.a99e905c.chunk.css": "/Pegs/static/css/1.a99e905c.chunk.css",
-  "static/js/1.95b05340.chunk.js": "/Pegs/static/js/1.95b05340.chunk.js",
-  "static/js/1.95b05340.chunk.js.map": "/Pegs/static/js/1.95b05340.chunk.js.map",
-  "runtime~main.js": "/Pegs/static/js/runtime~main.57aba329.js",
-  "runtime~main.js.map": "/Pegs/static/js/runtime~main.57aba329.js.map",
-  "static/media/christmas.mp3": "/Pegs/static/media/christmas.8bdcad53.mp3",
-  "static/media/neon.mp3": "/Pegs/static/media/neon.2052a467.mp3",
-  "static/media/rules.gif": "/Pegs/static/media/rules.9facfc6b.gif",
-  "static/media/tutorial.png": "/Pegs/static/media/tutorial.3e472493.png",
-  "static/media/asymmetrical.png": "/Pegs/static/media/asymmetrical.08e5993d.png",
-  "static/media/diamond.png": "/Pegs/static/media/diamond.2e4f56d9.png",
-  "static/media/german.png": "/Pegs/static/media/german.29539dad.png",
-  "static/media/english.png": "/Pegs/static/media/english.8204b0ec.png",
-  "static/media/square.png": "/Pegs/static/media/square.a55ab0f9.png",
-  "static/media/style.css": "/Pegs/static/media/neon.42968f0c.jpg",
-  "static/css/1.a99e905c.chunk.css.map": "/Pegs/static/css/1.a99e905c.chunk.css.map",
-  "static/css/main.5100b957.chunk.css.map": "/Pegs/static/css/main.5100b957.chunk.css.map",
-  "index.html": "/Pegs/index.html",
-  "precache-manifest.03d97b62575a469165bfeeaf082e10cb.js": "/Pegs/precache-manifest.03d97b62575a469165bfeeaf082e10cb.js",
-  "service-worker.js": "/Pegs/service-worker.js"
+  "files": {
+    "main.css": "/Pegs/static/css/main.e568f063.css",
+    "main.js": "/Pegs/static/js/main.7e3ec2e6.js",
+    "static/media/neon.mp3": "/Pegs/static/media/neon.c0e49c274e6d0a4e6cab.mp3",
+    "static/media/christmas.mp3": "/Pegs/static/media/christmas.bc4f2ba55af053832d12.mp3",
+    "static/media/neon.jpg": "/Pegs/static/media/neon.291938ad136e240c4a7e.jpg",
+    "static/media/german.png": "/Pegs/static/media/german.4f6639d123b633ed951d.png",
+    "static/media/diamond.png": "/Pegs/static/media/diamond.e518712e18dca07868fe.png",
+    "static/media/asymmetrical.png": "/Pegs/static/media/asymmetrical.c5818d8c99823e6289c5.png",
+    "static/media/square.png": "/Pegs/static/media/square.5c3d2012d5cf0a541c7f.png",
+    "static/media/english.png": "/Pegs/static/media/english.66d7d821c1deecd67910.png",
+    "static/media/rules.gif": "/Pegs/static/media/rules.1757dc9255e9aa44520e.gif",
+    "static/media/tutorial.png": "/Pegs/static/media/tutorial.f767e3a5bf1df2157da2.png",
+    "index.html": "/Pegs/index.html",
+    "main.e568f063.css.map": "/Pegs/static/css/main.e568f063.css.map",
+    "main.7e3ec2e6.js.map": "/Pegs/static/js/main.7e3ec2e6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e568f063.css",
+    "static/js/main.7e3ec2e6.js"
+  ]
 }
