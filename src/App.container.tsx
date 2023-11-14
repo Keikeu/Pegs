@@ -52,6 +52,7 @@ const AppContainer = () => {
   function changeBoard(index: number) {
     setBoardIndex(index);
     setBoardsModalOpen(false);
+    setRulesModalOpen(false);
     setGameState(null);
     setHistory(boards[index].history);
     localStorage.setItem("board", String(index));

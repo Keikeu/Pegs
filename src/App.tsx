@@ -141,7 +141,7 @@ const App = ({
         closeModal={() => setGameState(null)}
       />
 
-      {rulesModalOpen && <RulesModal closeModal={toggleRulesModal} />}
+      {rulesModalOpen && <RulesModal closeModal={toggleRulesModal} playTutorial={() => changeBoard(0)} />}
 
       {boardsModalOpen && (
         <BoardsModal
