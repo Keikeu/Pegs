@@ -7,6 +7,7 @@ const PegShape = styled.div<{ variant: number }>`
   border-radius: 50%;
   transition: box-shadow 0.1s ease-in-out;
   position: relative;
+  touch-action: none;
 
   ${({ variant }) => {
     if (variant === PEGS.REGULAR) {
