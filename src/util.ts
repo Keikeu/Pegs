@@ -1,7 +1,7 @@
 import { BOARD_TYPES, GAME_STATES, PEGS } from "./constants";
 
-export function findActivePegs(pegs, width, height) {
-  let pegsActive = [];
+export function findActivePegs(pegs: number[][], width: number, height: number) {
+  const pegsActive = [];
 
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
@@ -13,8 +13,8 @@ export function findActivePegs(pegs, width, height) {
   return pegsActive;
 }
 
-export function findPegsToMove(pegs, width, height) {
-  let pegsToMove = [];
+export function findPegsToMove(pegs: number[][], width: number, height: number) {
+  const pegsToMove = [];
 
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
@@ -41,8 +41,8 @@ export function findPegsToMove(pegs, width, height) {
   return pegsToMove;
 }
 
-export function findHolesToFill(pegs, i, j, width, height) {
-  let holesToFill = [];
+export function findHolesToFill(pegs: number[][], i: number, j: number, width: number, height: number) {
+  const holesToFill = [];
 
   if (
     i - 2 >= 0 &&
@@ -76,7 +76,7 @@ export function findHolesToFill(pegs, i, j, width, height) {
   return holesToFill;
 }
 
-export function deleteTheMiddlePeg(i, j, holesToFill, pegs) {
+export function deleteTheMiddlePeg(i: number, j: number, holesToFill: number[][], pegs: number[][]) {
   if (i > holesToFill[0][0]) {
     pegs[i - 1][j] = PEGS.EMPTY;
   } else if (i < holesToFill[0][0]) {
@@ -90,7 +90,7 @@ export function deleteTheMiddlePeg(i, j, holesToFill, pegs) {
   return pegs;
 }
 
-export function isInArray(array, item) {
+export function isInArray(array: number[][], item: number[]) {
   for (let i = 0; i < array.length; i++) {
     if (array[i][0] === item[0] && array[i][1] === item[1]) {
       return true;
@@ -99,7 +99,14 @@ export function isInArray(array, item) {
   return false;
 }
 
-export function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boardType, stepNumber) {
+export function calculateGameState(
+  pegsNumber: number,
+  pegsToMove: number[][],
+  pegsActive: number[][],
+  pegs: number[][],
+  boardType: string,
+  stepNumber: number
+) {
   let state = null;
 
   if (pegsToMove.length === 0 && pegsActive.length === 0) {
@@ -122,11 +129,11 @@ export function calculateGameState(pegsNumber, pegsToMove, pegsActive, pegs, boa
     }
 
     if (
-      !parseInt(localStorage.getItem("best-score-pegs-" + boardType)) ||
-      parseInt(localStorage.getItem("best-score-pegs-" + boardType)) > pegsNumber
+      !parseInt(localStorage.getItem("best-score-pegs-" + boardType) || "0") ||
+      parseInt(localStorage.getItem("best-score-pegs-" + boardType) || "0") > pegsNumber
     ) {
-      localStorage.setItem("best-score-pegs-" + boardType, pegsNumber);
-      localStorage.setItem("best-score-moves-" + boardType, Math.floor(stepNumber / 2));
+      localStorage.setItem("best-score-pegs-" + boardType, String(pegsNumber));
+      localStorage.setItem("best-score-moves-" + boardType, String(Math.floor(stepNumber / 2)));
     }
   }
 

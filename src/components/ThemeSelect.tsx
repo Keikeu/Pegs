@@ -1,6 +1,5 @@
 import React from "react";
-import T from "prop-types";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { styled as styledMUI } from "@mui/system";
 
@@ -47,20 +46,25 @@ const CustomSelect = styledMUI(Select)`
 	}
 `;
 
-const ThemeSelect = ({ changeTheme, theme }) => (
+interface Props {
+  theme: string;
+  changeTheme: (theme: string) => void;
+}
+
+const ThemeSelect = ({ changeTheme, theme }: Props) => (
   <ThemeSelectBox>
     <span>Theme:</span>
-    <CustomSelect onChange={(e) => changeTheme(e.target.value)} value={theme} size="small" variant="outlined">
+    <CustomSelect
+      onChange={(e: SelectChangeEvent<unknown>) => changeTheme(e.target.value as string)}
+      value={theme}
+      size="small"
+      variant="outlined"
+    >
       <MenuItem value={THEMES.DEFAULT}>Default</MenuItem>
       <MenuItem value={THEMES.CHRISTMAS}>Christmas</MenuItem>
       <MenuItem value={THEMES.NEON}>Neon</MenuItem>
     </CustomSelect>
   </ThemeSelectBox>
 );
-
-ThemeSelect.propTypes = {
-  theme: T.string,
-  changeTheme: T.func,
-};
 
 export default ThemeSelect;

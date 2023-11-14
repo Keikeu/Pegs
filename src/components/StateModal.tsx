@@ -1,14 +1,20 @@
 import React from "react";
-import T from "prop-types";
 import Button from "@mui/material/Button";
 import { GAME_STATES } from "../constants";
 import Icon from "./Icon";
 import Modal from "./Modal";
 
-const StateModal = ({ gameState, stepNumber, pegNumber, closeModal, restart, playEnglishBoard }) => {
-  if (gameState === null) {
-    return null;
-  } else if (gameState === GAME_STATES.DEFEAT) {
+interface Props {
+  gameState: string | null;
+  stepNumber: number;
+  pegNumber: number;
+  closeModal: () => void;
+  restart: () => void;
+  playEnglishBoard: () => void;
+}
+
+const StateModal = ({ gameState, stepNumber, pegNumber, closeModal, restart, playEnglishBoard }: Props) => {
+  if (gameState === GAME_STATES.DEFEAT) {
     return (
       <Modal closeModal={closeModal} variant="defeat">
         <Icon name="sentiment_very_dissatisfied" size={48} />
@@ -64,15 +70,8 @@ const StateModal = ({ gameState, stepNumber, pegNumber, closeModal, restart, pla
       </Modal>
     );
   }
-};
 
-StateModal.propTypes = {
-  gameState: T.string,
-  stepNumber: T.number,
-  pegNumber: T.number,
-  closeModal: T.func,
-  restart: T.func,
-  playEnglishBoard: T.func,
+  return null;
 };
 
 export default StateModal;

@@ -10,16 +10,16 @@ import {
   findHolesToFill,
   findPegsToMove,
   isInArray,
-} from "./util.js";
+} from "./util";
 
 const AppContainer = () => {
-  const [boardIndex, setBoardIndex] = useState(parseInt(localStorage.getItem("board")) || 0);
+  const [boardIndex, setBoardIndex] = useState(parseInt(localStorage.getItem("board") || "0"));
   const [rulesModalOpen, setRulesModalOpen] = useState(boardIndex === 0 ? true : false);
   const [boardsModalOpen, setBoardsModalOpen] = useState(false);
   const [isAudioOn, setAudio] = useState(false);
 
   const [history, setHistory] = useState(boards[boardIndex].history);
-  const [gameState, setGameState] = useState(null);
+  const [gameState, setGameState] = useState<null | string>(null);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || THEMES.DEFAULT);
 
   const boardType = useMemo(() => boards[boardIndex].boardType, [boardIndex]);
@@ -44,21 +44,21 @@ const AppContainer = () => {
     setAudio((on) => !on);
   }
 
-  function changeTheme(theme) {
+  function changeTheme(theme: string) {
     setTheme(theme);
     localStorage.setItem("theme", theme);
   }
 
-  function changeBoard(index) {
+  function changeBoard(index: number) {
     setBoardIndex(index);
     setBoardsModalOpen(false);
     setGameState(null);
     setHistory(boards[index].history);
-    localStorage.setItem("board", index);
+    localStorage.setItem("board", String(index));
   }
 
   const jumpToPointInHistory = useCallback(
-    (where) => {
+    (where: number) => {
       if (where < 0) return;
       setHistory(history.slice(0, where + 1));
       setGameState(null);
@@ -75,7 +75,7 @@ const AppContainer = () => {
   }
 
   const handlePegClick = useCallback(
-    (i, j) => {
+    (i: number, j: number) => {
       let currentPegs = JSON.parse(JSON.stringify(history[stepNumber].pegs));
       const holesToFill = findHolesToFill(currentPegs, i, j, width, height);
 
@@ -91,7 +91,8 @@ const AppContainer = () => {
 
       // clickable hole -> jump to it
       else if (currentPegs[i][j] === PEGS.EMPTY_HIGHLIGHTED) {
-        let a, b;
+        let a = 0,
+          b = 0;
         for (let x = 0; x < height; x++) {
           for (let y = 0; y < width; y++) {
             if (currentPegs[x][y] === PEGS.ACTIVE) {

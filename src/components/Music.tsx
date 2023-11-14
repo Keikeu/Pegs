@@ -1,5 +1,4 @@
 import React from "react";
-import T from "prop-types";
 import christmas from "../media/audio/christmas.mp3";
 import neon from "../media/audio/neon.mp3";
 import Button from "@mui/material/Button";
@@ -19,13 +18,19 @@ const AudioButton = styled(Button)`
   color: var(--text);
 `;
 
-const Music = ({ theme, isAudioOn, toggleAudio }) => (
+interface Props {
+  theme: string;
+  isAudioOn: boolean;
+  toggleAudio: () => void;
+}
+
+const Music = ({ theme, isAudioOn, toggleAudio }: Props) => (
   <div>
     {[THEMES.CHRISTMAS, THEMES.NEON].includes(theme) && (
       <>
         {isAudioOn ? (
           <>
-            <audio autoPlay loop src={themeSongs[theme]} type="audio/mpeg" />
+            <audio autoPlay loop src={themeSongs[theme]} />
             <AudioButton onClick={toggleAudio}>
               <Icon name="volume_up" />
             </AudioButton>
@@ -39,11 +44,5 @@ const Music = ({ theme, isAudioOn, toggleAudio }) => (
     )}
   </div>
 );
-
-Music.propTypes = {
-  theme: T.string,
-  isAudioOn: T.bool,
-  toggleAudio: T.func,
-};
 
 export default Music;

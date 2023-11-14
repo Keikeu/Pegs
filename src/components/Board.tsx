@@ -1,13 +1,12 @@
 import React from "react";
-import T from "prop-types";
-import Peg from "./Peg.js";
+import Peg from "./Peg";
 import styled, { css } from "styled-components";
-import { BOARD_TYPES, PEGS } from "../constants.js";
-import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { BOARD_TYPES, PEGS } from "../constants";
+import { DndContext, DragEndEvent, DragStartEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { restrictToWindowEdges } from "@dnd-kit/modifiers";
-import { isInArray } from "../util.js";
+import { isInArray } from "../util";
 
-const BoardBox = styled.div`
+const BoardBox = styled.div<{ $boardType: string }>`
   margin: auto;
   position: absolute;
   top: 0;
@@ -90,7 +89,17 @@ const ShadowPeg = styled.div`
   z-index: var(--z-index-0);
 `;
 
-const Board = ({ pegs, pegsToMove, activePegs, width, height, handlePegClick, boardType }) => {
+interface Props {
+  pegs: number[][];
+  pegsToMove: number[][];
+  activePegs: number[][];
+  width: number;
+  height: number;
+  handlePegClick: (x: number, y: number) => void;
+  boardType: string;
+}
+
+const Board = ({ pegs, pegsToMove, activePegs, width, height, handlePegClick, boardType }: Props) => {
   const pegIndexArray = Array.from({ length: width * height }, (_, i) => i);
 
   const sensors = useSensors(
@@ -101,29 +110,29 @@ const Board = ({ pegs, pegsToMove, activePegs, width, height, handlePegClick, bo
     })
   );
 
-  function calcX(index) {
+  function calcX(index: number) {
     return Math.floor(index / width);
   }
 
-  function calcY(index) {
+  function calcY(index: number) {
     return index % width;
   }
 
-  function handleDragEnd(event) {
+  function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 
     if (active && over && active.id !== over.id) {
       const pegIndex = over.id;
-      const x = calcX(pegIndex);
-      const y = calcY(pegIndex);
+      const x = calcX(+pegIndex);
+      const y = calcY(+pegIndex);
       handlePegClick(x, y);
     }
   }
 
-  function handleDragStart(event) {
+  function handleDragStart(event: DragStartEvent) {
     const { id: pegIndex } = event.active;
-    const x = calcX(pegIndex);
-    const y = calcY(pegIndex);
+    const x = calcX(+pegIndex);
+    const y = calcY(+pegIndex);
     if (!isInArray(activePegs, [x, y])) {
       handlePegClick(x, y);
     }
@@ -164,16 +173,6 @@ const Board = ({ pegs, pegsToMove, activePegs, width, height, handlePegClick, bo
       </DndContext>
     </>
   );
-};
-
-Board.propTypes = {
-  pegs: T.array,
-  pegsToMove: T.array,
-  activePegs: T.array,
-  width: T.number,
-  height: T.number,
-  handlePegClick: T.func,
-  boardType: T.string,
 };
 
 export default Board;

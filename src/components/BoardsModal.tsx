@@ -1,5 +1,4 @@
 import React from "react";
-import T from "prop-types";
 import tutorial from "../media/images/tutorial.png";
 import asymmetrical from "../media/images/asymmetrical.png";
 import diamond from "../media/images/diamond.png";
@@ -29,7 +28,7 @@ const BoardGallery = styled.div`
   }
 `;
 
-const GalleryItem = styled.div`
+const GalleryItem = styled.div<{ $isCurrent: boolean }>`
   border-radius: 8px;
   padding: 4px;
   cursor: pointer;
@@ -38,8 +37,8 @@ const GalleryItem = styled.div`
     background-color: var(--neutral-190);
   }
 
-  ${({ $current }) =>
-    $current &&
+  ${({ $isCurrent }) =>
+    $isCurrent &&
     css`
       background-color: var(--neutral-190);
       border: 1px solid var(--neutral-180);
@@ -52,30 +51,26 @@ const BoardImage = styled.img`
   margin: auto;
 `;
 
-const BoardsModal = ({ initialIndex, closeModal, changeBoard }) => {
+interface Props {
+  initialIndex: number;
+  closeModal: () => void;
+  changeBoard: (index: number) => void;
+}
+
+const BoardsModal = ({ initialIndex, closeModal, changeBoard }: Props) => {
   return (
     <Modal closeModal={closeModal}>
       <h2>Play on a different board</h2>
       <BoardGallery>
-        {boardImages.map((item, i) => (
-          <GalleryItem
-            key={boardNames[i]}
-            $current={initialIndex === i ? true : undefined}
-            onClick={() => changeBoard(i)}
-          >
+        {boardImages.map((image, i) => (
+          <GalleryItem key={boardNames[i]} $isCurrent={initialIndex === i} onClick={() => changeBoard(i)}>
             <h3>{boardNames[i]}</h3>
-            <BoardImage src={item} alt={boardNames[i]} />
+            <BoardImage src={image} alt={boardNames[i]} />
           </GalleryItem>
         ))}
       </BoardGallery>
     </Modal>
   );
-};
-
-BoardsModal.propTypes = {
-  initialIndex: T.number,
-  closeModal: T.func,
-  changeBoard: T.func,
 };
 
 export default BoardsModal;

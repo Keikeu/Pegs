@@ -1,20 +1,19 @@
 import React from "react";
-import T from "prop-types";
 
-import Board from "./components/Board.js";
-import Music from "./components/Music.js";
-import Snow from "./components/Snow.js";
-import Score from "./components/Score.js";
-import Navigation from "./components/Navigation.js";
-import ThemeSelect from "./components/ThemeSelect.js";
-import RulesModal from "./components/RulesModal.js";
-import StateModal from "./components/StateModal.js";
-import BoardsModal from "./components/BoardsModal.js";
-import { THEMES } from "./constants.js";
+import Board from "./components/Board";
+import Music from "./components/Music";
+import Snow from "./components/Snow";
+import Score from "./components/Score";
+import Navigation from "./components/Navigation";
+import ThemeSelect from "./components/ThemeSelect";
+import RulesModal from "./components/RulesModal";
+import StateModal from "./components/StateModal";
+import BoardsModal from "./components/BoardsModal";
+import { THEMES } from "./constants";
 import styled, { css } from "styled-components";
 import NeonJPG from "./media/images/neon.jpg";
 
-const Container = styled.div`
+const Container = styled.div<{ theme: string }>`
   height: 100%;
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -55,6 +54,31 @@ const Title = styled.h1`
   }
 `;
 
+interface Props {
+  isAudioOn: boolean;
+  toggleAudio: () => void;
+  rulesModalOpen: boolean;
+  toggleRulesModal: () => void;
+  boardsModalOpen: boolean;
+  toggleBoardsModal: () => void;
+  theme: string;
+  changeTheme: (theme: string) => void;
+  stepNumber: number;
+  pegs: number[][];
+  handlePegClick: (x: number, y: number) => void;
+  width: number;
+  height: number;
+  boardType: string;
+  pegNumber: number;
+  gameState: string | null;
+  setGameState: (state: string | null) => void;
+  changeBoard: (index: number) => void;
+  undo: () => void;
+  restart: () => void;
+  pegsToMove: number[][];
+  activePegs: number[][];
+}
+
 const App = ({
   isAudioOn,
   toggleAudio,
@@ -78,7 +102,7 @@ const App = ({
   restart,
   pegsToMove,
   activePegs,
-}) => {
+}: Props) => {
   return (
     <Container theme={theme} className={theme}>
       {theme !== THEMES.DEFAULT && <Music theme={theme} isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
@@ -121,38 +145,13 @@ const App = ({
 
       {boardsModalOpen && (
         <BoardsModal
-          initialIndex={parseInt(localStorage.getItem("board"))}
+          initialIndex={parseInt(localStorage.getItem("board") || "0")}
           changeBoard={changeBoard}
           closeModal={toggleBoardsModal}
         />
       )}
     </Container>
   );
-};
-
-App.propTypes = {
-  isAudioOn: T.bool,
-  toggleAudio: T.func,
-  rulesModalOpen: T.bool,
-  toggleRulesModal: T.func,
-  boardsModalOpen: T.bool,
-  toggleBoardsModal: T.func,
-  theme: T.string,
-  changeTheme: T.func,
-  stepNumber: T.number,
-  pegs: T.array,
-  handlePegClick: T.func,
-  width: T.number,
-  height: T.number,
-  boardType: T.string,
-  pegNumber: T.number,
-  gameState: T.string,
-  setGameState: T.func,
-  changeBoard: T.func,
-  undo: T.func,
-  restart: T.func,
-  pegsToMove: T.array,
-  activePegs: T.array,
 };
 
 export default App;

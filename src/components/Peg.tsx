@@ -1,10 +1,9 @@
 import React from "react";
-import T from "prop-types";
 import { PEGS } from "../constants";
 import styled, { css } from "styled-components";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 
-const PegShape = styled.div`
+const PegShape = styled.div<{ variant: number }>`
   border-radius: 50%;
   transition: box-shadow 0.1s ease-in-out;
   position: relative;
@@ -49,7 +48,14 @@ const PegShape = styled.div`
   }}
 `;
 
-const Peg = ({ id, value, handlePegClick, isMovable }) => {
+interface Props {
+  id?: number;
+  value: number;
+  handlePegClick?: () => void;
+  isMovable?: boolean;
+}
+
+const Peg = ({ id, value, handlePegClick, isMovable }: Props) => {
   const { isOver, setNodeRef: setDroppableNodeRef } = useDroppable({
     id: String(id),
   });
@@ -91,13 +97,6 @@ const Peg = ({ id, value, handlePegClick, isMovable }) => {
   }
 
   return <PegShape variant={value} onClick={handlePegClick} />;
-};
-
-Peg.propTypes = {
-  id: T.number,
-  handlePegClick: T.func,
-  value: T.number,
-  isMovable: T.bool,
 };
 
 export default Peg;

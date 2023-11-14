@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import T from "prop-types";
 import styled from "styled-components";
 
 const Canvas = styled.canvas`
@@ -12,8 +11,12 @@ const Canvas = styled.canvas`
   position: fixed;
 `;
 
-const SnowflakesCanvas = ({ angle }) => {
-  const canvasRef = React.createRef();
+interface Props {
+  angle: number;
+}
+
+const SnowflakesCanvas = ({ angle }: Props) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const width = window.innerWidth || 1440;
   const height = window.innerHeight || 900;
   const count = Math.floor((width + height) / 10);
@@ -32,51 +35,49 @@ const SnowflakesCanvas = ({ angle }) => {
   }, [width, height, count]);
 
   useEffect(() => {
-    const ctx = canvasRef.current.getContext("2d");
+    const ctx = canvasRef.current?.getContext("2d");
 
-    flakes.forEach((flake) => {
-      flake.y += (flake.o + flake.r) * 0.5;
-      flake.x += Math.sin(angle + flake.r * 100);
+    if (ctx) {
+      flakes.forEach((flake) => {
+        flake.y += (flake.o + flake.r) * 0.5;
+        flake.x += Math.sin(angle + flake.r * 100);
 
-      if (flake.y > height) {
-        flake.y = -10;
-        flake.x = Math.random() * width;
-      }
-    });
+        if (flake.y > height) {
+          flake.y = -10;
+          flake.x = Math.random() * width;
+        }
+      });
 
-    ctx.save();
-    ctx.beginPath();
-    ctx.clearRect(0, 0, width, height);
-    flakes.forEach((flake) => {
-      ctx.fillStyle = "rgba(255, 255, 255, " + flake.o + ")";
+      ctx.save();
       ctx.beginPath();
-      ctx.moveTo(flake.x, flake.y);
-      ctx.arc(flake.x, flake.y, flake.r, 0, 2 * Math.PI);
-      ctx.fill();
-    });
+      ctx.clearRect(0, 0, width, height);
+      flakes.forEach((flake) => {
+        ctx.fillStyle = "rgba(255, 255, 255, " + flake.o + ")";
+        ctx.beginPath();
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.r, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+    }
   }, [angle, canvasRef, flakes, height, width]);
 
   return <Canvas width={width} height={height} ref={canvasRef} />;
 };
 
-SnowflakesCanvas.propTypes = {
-  angle: T.number,
-};
-
 const Snow = () => {
   const [angle, setAngle] = useState(0);
-  const raf = useRef();
+  const ref = useRef<number | null>(null);
 
   useEffect(() => {
     function updateAnimationState() {
       setAngle((prevAngle) => prevAngle + 0.01);
-      raf.current = requestAnimationFrame(updateAnimationState);
+      ref.current = requestAnimationFrame(updateAnimationState);
     }
 
-    raf.current = requestAnimationFrame(updateAnimationState);
+    ref.current = requestAnimationFrame(updateAnimationState);
 
     return () => {
-      cancelAnimationFrame(raf.current);
+      if (ref.current) cancelAnimationFrame(ref.current);
     };
   }, []);
 

@@ -1,22 +1,21 @@
 import React from "react";
-import T from "prop-types";
 import styled from "styled-components";
 
-const I = styled.i`
+const I = styled.i<{ size: number }>`
   font-size: ${({ size }) => size}px;
 `;
 
-const Icon = ({ name, size = 24 }) => {
+interface Props {
+  name: string;
+  size?: number;
+}
+
+const Icon = ({ name, size = 24 }: Props) => {
   return (
     <I className="material-icons" size={size}>
       {name}
     </I>
   );
-};
-
-Icon.propTypes = {
-  name: T.string,
-  size: T.number,
 };
 
 export default Icon;

@@ -1,5 +1,4 @@
 import React from "react";
-import T from "prop-types";
 import styled from "styled-components";
 
 const ScoreBox = styled.div`
@@ -18,7 +17,13 @@ const ScoreBox = styled.div`
   }
 `;
 
-const Score = ({ stepNumber, pegNumber, boardType }) => {
+interface Props {
+  stepNumber: number;
+  pegNumber: number;
+  boardType: string;
+}
+
+const Score = ({ stepNumber, pegNumber, boardType }: Props) => {
   const bestScoreMoves = localStorage.getItem("best-score-moves-" + boardType);
   const bestScorePegs = localStorage.getItem("best-score-pegs-" + boardType);
 
@@ -34,12 +39,6 @@ const Score = ({ stepNumber, pegNumber, boardType }) => {
       </div>
     </ScoreBox>
   );
-};
-
-Score.propTypes = {
-  stepNumber: T.number,
-  pegNumber: T.number,
-  boardType: T.string,
 };
 
 export default Score;

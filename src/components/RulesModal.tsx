@@ -1,5 +1,4 @@
 import React from "react";
-import T from "prop-types";
 import rules from "../media/images/rules.gif";
 import Modal from "./Modal";
 import styled from "styled-components";
@@ -13,7 +12,11 @@ const RulesImg = styled.img`
   }
 `;
 
-const RulesModal = ({ closeModal }) => (
+interface Props {
+  closeModal: () => void;
+}
+
+const RulesModal = ({ closeModal }: Props) => (
   <Modal closeModal={closeModal}>
     <h2>How to play</h2>
     <p>Remove as many pegs as you can.</p>
@@ -21,9 +24,5 @@ const RulesModal = ({ closeModal }) => (
     <RulesImg src={rules} alt="rules" />
   </Modal>
 );
-
-RulesModal.propTypes = {
-  closeModal: T.func,
-};
 
 export default RulesModal;

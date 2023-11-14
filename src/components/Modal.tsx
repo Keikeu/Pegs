@@ -1,5 +1,4 @@
-import React from "react";
-import T from "prop-types";
+import React, { ReactNode } from "react";
 import Button from "@mui/material/Button";
 import Icon from "./Icon";
 import styled, { css } from "styled-components";
@@ -15,7 +14,7 @@ const ModalBackground = styled.div`
   z-index: var(--z-index-above);
 `;
 
-const ModalBox = styled.div`
+const ModalBox = styled.div<{ variant: string | undefined }>`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -90,7 +89,13 @@ const CloseButton = styledMUI(Button)`
   cursor: pointer;
 `;
 
-const Modal = ({ closeModal, variant, children }) => (
+interface Props {
+  closeModal: () => void;
+  variant?: string;
+  children: ReactNode;
+}
+
+const Modal = ({ closeModal, variant, children }: Props) => (
   <>
     <ModalBackground onClick={closeModal} />
     <ModalBox variant={variant}>
@@ -101,11 +106,5 @@ const Modal = ({ closeModal, variant, children }) => (
     </ModalBox>
   </>
 );
-
-Modal.propTypes = {
-  closeModal: T.func,
-  variant: T.string,
-  children: T.node,
-};
 
 export default Modal;

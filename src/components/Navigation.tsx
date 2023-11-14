@@ -1,5 +1,4 @@
 import React from "react";
-import T from "prop-types";
 import Button from "@mui/material/Button";
 import Icon from "./Icon";
 import styled from "styled-components";
@@ -28,7 +27,14 @@ const OptionsButton = styledMUI(Button)`
 	}
 `;
 
-const Navigation = ({ undo, restart, toggleBoardsModal, toggleRulesModal }) => (
+interface Props {
+  undo: () => void;
+  restart: () => void;
+  toggleBoardsModal: () => void;
+  toggleRulesModal: () => void;
+}
+
+const Navigation = ({ undo, restart, toggleBoardsModal, toggleRulesModal }: Props) => (
   <Options>
     <OptionsButton onClick={undo}>
       <Icon name="keyboard_backspace" />
@@ -48,12 +54,5 @@ const Navigation = ({ undo, restart, toggleBoardsModal, toggleRulesModal }) => (
     </OptionsButton>
   </Options>
 );
-
-Navigation.propTypes = {
-  undo: T.func,
-  restart: T.func,
-  toggleBoardsModal: T.func,
-  toggleRulesModal: T.func,
-};
 
 export default Navigation;
