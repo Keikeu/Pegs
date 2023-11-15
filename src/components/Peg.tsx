@@ -8,6 +8,10 @@ const PegShape = styled.div<{ variant: number }>`
   position: relative;
   touch-action: none;
 
+  &:active {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   ${({ variant }) => {
     if (variant === PEGS.REGULAR) {
       return css`
@@ -40,10 +44,6 @@ const PegShape = styled.div<{ variant: number }>`
         box-shadow: var(--shadow-2);
         border: 2px solid var(--highlight);
         cursor: pointer;
-
-        &:active {
-          -webkit-tap-highlight-color: transparent;
-        }
       `;
     }
   }}
