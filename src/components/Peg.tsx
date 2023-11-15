@@ -5,7 +5,6 @@ import { useDraggable, useDroppable } from "@dnd-kit/core";
 
 const PegShape = styled.div<{ variant: number }>`
   border-radius: 50%;
-  transition: box-shadow 0.1s ease-in-out;
   position: relative;
   touch-action: none;
 
@@ -16,6 +15,7 @@ const PegShape = styled.div<{ variant: number }>`
         background-image: linear-gradient(to top, var(--peg-100), var(--peg-110));
         box-shadow: var(--shadow-1);
         cursor: pointer;
+        transition: box-shadow 0.1s ease-in-out;
 
         &:hover {
           box-shadow: var(--shadow-2);
